@@ -1,0 +1,244 @@
+:root
+{
+    --dark: #0a0a0a;
+    --grey: #f6f6f6;
+    --light: #ffffff;
+    --Darkgray: #f1f1f1;
+    --SemiDark: #1a1a1a;
+}
+
+body
+{
+    font-family: 'Spartan', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 350;
+    background-color: var(--grey);
+}
+
+.navbar
+{
+    min-width: 5rem;
+    background-color: whitesmoke !important;
+}
+
+.NavbarLogo
+{
+    width: 26%;
+}
+
+.bg-light { background-color: var(--light) !important; }
+.bg-dark { background-color: var(--dark) !important; }
+.bg-grey { background-color: var(--grey) !important; }
+.bg-darkgray { background-color: var(--Darkgray) !important; }
+.text-dark{ color: var(--dark) !important; }
+
+.py-6
+{
+    padding-top: 3rem;
+    padding-bottom: 8rem;
+}
+
+.btn
+{
+    padding: 1rem 1.5 rem;
+    border-radius: .3rem;
+    font-weight: 800;
+}
+
+.btn-dark { background-color: var(--dark);}
+.btn-outline-dark:hover { background-color: var(--dark);}
+
+.play-icon
+{
+    width: 7rem;
+    height: 7rem;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse
+{
+    0%
+    {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 1.5);
+    }
+    70%
+    {
+        box-shadow: 0 0 0 25px rgba(0, 0, 0, 0);
+    }
+    100%
+    {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+}
+
+.hero
+{
+    background: linear-gradient(180deg, var(--grey) 70%, var(--light) 0);
+}
+
+.modal-dialog
+{
+    max-width: 800px;
+}
+
+.video-container
+{
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.video-container::after
+{
+    padding-top: 56.25%;
+    display: block;
+    content: '';
+}
+
+.video-container iframe
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+button:focus
+{
+    outline: none;
+}
+
+.member-info
+{
+    bottom: 4rem;
+    left: 4rem;
+}
+
+.badge
+{
+    padding: 1rem 2rem;
+}
+
+.bagde-secondary
+{
+    background-color: var(--grey);
+    color: var(--dark);
+}
+
+.user
+{
+    max-width: 50px;
+}
+
+@media (max-width:760px)
+{
+    .modal-dialog
+    {
+        max-width: 500px;
+    }
+}
+
+@media (max-width:576px)
+{
+    .display-4
+    {
+        font-size: 2.4rem;
+    }
+    .btn
+    {
+        width: 100%;
+    }
+    .w-75
+    {
+        width: 100% !important;
+    }
+}
+
+/*------------------------------------------------ESTILOS EXTRA DE ANDY------------------------------------------------*/
+/*LINK HOVER STYLES*/
+.link-text-dark{ text-decoration: none !important; color: black; }
+
+.link 
+{
+    font-size: 1.1rem;
+    padding: 10px 15px !important;
+    text-decoration: none;
+    line-height: 1;
+    position: relative;
+    z-index: 0;
+    display: inline-block;
+    padding: 5px 5px;
+    overflow: hidden;
+    vertical-align: bottom;
+    transition: color .3s ease-out;
+}
+
+.link::before 
+{
+    border-radius: 0px;
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    transform: translateY(calc(100% - 2px));
+    width: 100%;
+    height: 100%;
+    background-color: rgb(43, 43, 43);
+    transition: transform 90ms ease-out;
+}
+
+.link:hover 
+{ 
+    color: #fff !important;
+    transition: color 30ms ease-in-out; 
+}
+
+.link:hover::before 
+{
+    border-radius: 5px;
+    transform: translateY(0);
+    background-color: rgb(51, 51, 51);
+    transition: transform background-color 90ms ease-out;
+}
+
+.link:active::before
+{
+    background-color: rgb(0, 0, 0);
+    transition: background-color 60ms ease-out;
+}
+
+/*OTHER STYLES*/
+.aButton
+{
+    padding: 0.625rem 0.9375rem;
+}
+
+.SocialNetworks a 
+{ 
+    text-decoration: none; 
+    color: black; 
+    cursor: pointer ; 
+    background-color: white;
+    transition: all 100ms ease-in-out;
+}
+.SocialNetworks i::before{ margin-right: 10px; } 
+.SocialNetworks a:hover
+{
+    color: white !important;
+    background-color: var(--SemiDark);
+    transition: all 100ms ease-in-out;
+}
+.SocialNetworks div:hover a
+{
+    color: white !important;
+    transition: all 100ms ease-in-out;
+}
+
+/*FOOTER STYLES*/
+.footerStyles { background-color: var(--SemiDark) ;}
+.footerStyles small { color: white; }
+.footerStyles h6 { color: rgb(226, 226, 226); }
+.footerStyles a { color: rgb(226, 226, 226); }
