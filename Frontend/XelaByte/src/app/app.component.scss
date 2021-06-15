@@ -1,0 +1,11 @@
+@import "../assets/Sass/Colors";
+
+.CardStyle
+{
+    background: $CardBackground;
+    box-shadow: $CardsShadow;
+    padding: 4rem;
+    border-radius: 15px;
+}
+
+.ParagraphColor { color: $FontColor; }

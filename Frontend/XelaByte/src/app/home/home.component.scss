@@ -1,0 +1,36 @@
+@import "../../assets/Sass/Colors";
+
+.CircleInf
+{
+    width: 4rem;
+    height: 4rem;
+    background-color: $SemiBlack;
+    color: white;
+    justify-content: center;
+    border-radius: 50%;
+    display: inline-block;
+    font-size: 2.2rem;
+    box-shadow: $BlackBGShadow;
+    margin: 0rem 3rem;
+    transition: all ease-in-out 200ms;
+    &:hover
+    {
+        transition: all ease-in-out 100ms;
+        transform: translateY(-0.4375rem);
+    }
+    &:active
+    {
+        color: rgb(238, 238, 238);
+    }
+}
+
+.HomeList
+{
+    list-style: none;
+    color: $FontColor;
+    i
+    {
+        color: black !important;
+        font-size: 1.3rem;
+    }
+}

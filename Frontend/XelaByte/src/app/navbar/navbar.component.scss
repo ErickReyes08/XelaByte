@@ -1,0 +1,16 @@
+@import "../../assets/Sass/Colors";
+
+nav
+{
+    background: $Principal_C;
+    box-shadow: $NavShadow;
+    border-radius: 0.625rem;
+    div
+    {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    img { width: 12rem; }
+}
