@@ -6,6 +6,33 @@
     box-shadow: $CardsShadow;
     padding: 4rem;
     border-radius: 15px;
+    &[data-talent] { padding: 2rem 4rem !important; }
+}
+
+.CardBlackStyle
+{
+    .w-auto{ width: auto; }
+    background: $CardBlackBackground;
+    box-shadow: $CardsShadow;
+    color: white;
+    padding: 4rem;
+    border-radius: 15px;
+    z-index: -2;
+}
+
+.responsive-iframe
+{
+    position: relative;
+    width: 70%;
+    overflow: hidden;
+    padding-top: 35%;
+    iframe
+    {
+        position: absolute;
+        top: 0; left: 0; bottom: 0; right: 0;
+        width: 100%; height: 100%;
+        border: none;
+    }
 }
 
 .ParagraphColor { color: $FontColor; }

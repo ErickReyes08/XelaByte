@@ -22,10 +22,11 @@
     {
         color: rgb(238, 238, 238);
     }
-}
+} 
 
 .HomeList
 {
+    padding: 0;
     list-style: none;
     color: $FontColor;
     i
@@ -33,4 +34,147 @@
         color: black !important;
         font-size: 1.3rem;
     }
+}
+
+.EquipList
+{
+    padding: 0;
+    list-style: none;
+    color: white;
+    img
+    {
+        width: 18rem;
+        height: 18rem;
+        border-radius: 50%;
+        display: inline-block;
+        box-shadow: $CardsShadow;
+        //margin: 0rem 3rem;
+        margin-bottom: 6rem;
+    }
+    li { margin: 6rem 0rem; }
+}
+
+[data-tooltip] 
+{
+    span
+    {
+        font-size: 1rem;
+        opacity: 0;
+        width: max-content;
+        padding: 0.625rem 1.2rem;
+        background-color: $SemiBlack;
+        color: white;
+        border-radius: 0.625rem;
+
+        position: absolute;
+        z-index: 1;
+        bottom: 100%;
+        transition: all ease-in-out 150ms;
+
+        &::after
+        {
+            content: "";
+            width: 0.8rem;
+            height: 0.8rem;
+            position: absolute;
+            z-index: -1;
+            top: 80%;
+            right: 50%;
+            margin-right: -0.4rem;
+            background-color: $SemiBlack;
+            transform: rotate(45deg);
+        }
+    }
+
+    &:hover
+    {
+        span
+        {
+            opacity: 1;
+            transform: translateY(-1rem);
+            transition: all ease-in-out 100ms;
+        }
+    }
+}
+
+.IframeXB
+{
+    width: 5rem;
+    height: 5rem;
+}
+
+.TextCard
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    z-index: -1;
+    //bottom: 100%;
+    //font-size: 1rem;
+    //opacity: 0;
+    width: 18rem;
+    height: 18rem;
+    padding: 0.625rem 1.2rem;
+    //margin: 0rem 3rem;
+    margin-top: 9rem;
+    background-color: white;
+    color: $FontColor;
+    box-shadow: $CardsLight;
+    border-radius: 0.625rem;
+    transition: all ease-in-out 150ms;
+    div
+    {
+        margin-top: 9rem;
+        p{ &:first-child { font-size: 1.25rem; } }
+        p{ &:last-child { font-size: 1rem; } }
+    }
+}
+
+.TalentContainer
+{
+    flex-direction: row !important;
+    @media only screen and (max-width: 450px) 
+    {
+        flex-direction: column !important;
+        .TalentButton { width: 100%; }
+    }
+}
+
+.TalentButton
+{
+    a 
+    {
+        width: fit-content !important;
+        color: white;
+        background-color: black;
+        box-shadow: $BlackBGShadow;
+        border-radius: 10px;
+        font-size: 1.125rem;
+        text-decoration: none;
+        padding: 0.625rem 1rem;
+        z-index: 1;
+        transition: all ease-in-out 150ms;
+        &:hover
+        {
+            transition: all ease-in-out 100ms;
+            background-color: $HoverButtonBG;
+            //padding: 0.75rem 1.3125rem;
+            /*&~i
+            {
+                transition: all ease-in-out 100ms;
+                //transform: translateX(6.5rem);
+            }*/
+        }
+        &:active { color: $ClickFontColor; }
+    }
+    /*i
+    {
+        
+        //transform: translateX(2rem);
+        //stransition: all ease-in-out 150ms;
+        //position: absolute;
+        //font-size: 2.5rem;
+        color: white;
+    }*/
 }
