@@ -1,0 +1,169 @@
+@import "../../assets/Sass/Colors";
+
+/*SLIDER STYLES*/
+@mixin default-transition($param: all)  { transition: $param 200ms ease; }
+
+.slider
+{
+    .slider__radio { display: none; }
+    .slider__holder 
+    { 
+        margin: 4rem auto;
+        position: relative;
+        width: 100%;
+        max-width: 37.5rem;
+        a { text-decoration: none; }
+        ul { list-style: none; }
+
+        .TurnLButton, .TurnRButton
+        {
+            font-size: 2rem;
+            color: $FontColor; 
+            height: 100%;
+            position: absolute;
+            z-index: 10;
+            padding-top: calc(50%);
+        }
+
+        .TurnLButton
+        {
+            padding-left: 2rem;
+            transition: all ease 150ms;
+            &:hover { color: $DarkGray_1; transition: all ease 100ms; }
+        }
+
+        .TurnRButton
+        {
+            padding-right: 2rem;
+            left: calc(100% - 4rem);
+            transition: all ease 150ms;
+            &:hover { color: $DarkGray_1; transition: all ease 100ms; }
+        }
+    }
+
+    &__item
+    {
+        @include default-transition(all);
+        z-index: 0;
+        transform: scale(0.85);
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        overflow: hidden;
+        width: 100%;
+        border-radius: 15px;
+        background: white;
+        box-shadow: $CardsShadow;
+        //cursor: pointer;
+
+        .sc-1 { padding: 3rem 3rem 1.5rem 3rem;}
+        .sc-2
+        {
+            p { margin-bottom: 2rem; }
+        }
+        .sc-3 { padding: 0rem 1.5rem 1.5rem 1.5rem; }
+
+        @for $slide from 1 through 6
+        {
+            &--#{$slide}
+            {
+                @for $i from 1 through 6
+                {
+                    @if $i <= $slide - 3
+                    {
+                        #slide-#{$i}:checked ~ .slider__holder &
+                        {
+                            z-index: -1;
+                            opacity: 0;
+                            transform: translateX(13.125rem) scale(0.65);
+                        }
+                    }
+
+                    @if $i == $slide - 2
+                    {
+                        #slide-#{$i}:checked ~ .slider__holder &
+                        {
+                            z-index: 0;
+                            transform: translateX(13.125rem) scale(0.65);
+                        }
+                    }
+
+                    @if $i == $slide - 1
+                    {
+                        #slide-#{$i}:checked ~ .slider__holder &
+                        {
+                            z-index: 1;
+                            transform: translateX(6.25rem) scale(0.85);
+                        }
+                    }
+
+                    @if $i == $slide
+                    {
+                        #slide-#{$i}:checked ~ .slider__holder &
+                        {
+                            position: relative;
+                            z-index: 2;
+                            transform: translateX(0) scale(1);
+                        }
+                    }
+
+                    @if $i == $slide + 1
+                    {
+                        #slide-#{$i}:checked ~ .slider__holder &
+                        {
+                            z-index: 1;
+                            transform: translateX(-6.25rem) scale(0.85);
+                        }
+                    }
+
+                    @if $i == $slide + 2
+                    {
+                        #slide-#{$i}:checked ~ .slider__holder &
+                        {
+                            z-index: 0;
+                            transform: translateX(-13.125rem) scale(0.65);
+                        }
+                    }
+
+                    @if $i >= $slide + 3
+                    {
+                        #slide-#{$i}:checked ~ .slider__holder &
+                        {
+                            z-index: -1;
+                            opacity: 0;
+                            transform: translateX(-13.125rem) scale(0.65);
+                        }
+                    }
+                }
+            }    
+        }
+    }
+}
+
+.bullets
+{
+    &__item
+    {
+        @include default-transition();
+
+        display: inline-block;
+        width: 0.625rem;
+        height: 0.625rem;
+        margin: 0 0.25rem;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+
+        @for $bullet from 1 through 6
+        {
+            &--#{$bullet}
+            {
+                #slide-#{$bullet}:checked ~ .bullets &
+                {
+                    background: white;
+                }
+            }
+        }
+    }
+}

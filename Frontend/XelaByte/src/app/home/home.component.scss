@@ -4,7 +4,8 @@
 {
     width: 4rem;
     height: 4rem;
-    background-color: $SemiBlack;
+    //background-color: $SemiBlack;
+    background: $ButtonsBlackGradient;
     color: white;
     justify-content: center;
     border-radius: 50%;
@@ -13,10 +14,11 @@
     box-shadow: $BlackBGShadow;
     margin: 0rem 3rem;
     transition: all ease-in-out 200ms;
+
     &:hover
     {
         transition: all ease-in-out 100ms;
-        transform: translateY(-0.4375rem);
+        transform: translateY(-0.4375rem) scale(1.05, 1.05);
     }
     &:active
     {
@@ -136,45 +138,8 @@
     flex-direction: row !important;
     @media only screen and (max-width: 450px) 
     {
+        &:first-child p { margin: 2rem 0rem; }
         flex-direction: column !important;
-        .TalentButton { width: 100%; }
+        .DarkButton { width: max-content !important; }
     }
-}
-
-.TalentButton
-{
-    a 
-    {
-        width: fit-content !important;
-        color: white;
-        background-color: black;
-        box-shadow: $BlackBGShadow;
-        border-radius: 10px;
-        font-size: 1.125rem;
-        text-decoration: none;
-        padding: 0.625rem 1rem;
-        z-index: 1;
-        transition: all ease-in-out 150ms;
-        &:hover
-        {
-            transition: all ease-in-out 100ms;
-            background-color: $HoverButtonBG;
-            //padding: 0.75rem 1.3125rem;
-            /*&~i
-            {
-                transition: all ease-in-out 100ms;
-                //transform: translateX(6.5rem);
-            }*/
-        }
-        &:active { color: $ClickFontColor; }
-    }
-    /*i
-    {
-        
-        //transform: translateX(2rem);
-        //stransition: all ease-in-out 150ms;
-        //position: absolute;
-        //font-size: 2.5rem;
-        color: white;
-    }*/
 }
