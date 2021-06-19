@@ -1,5 +1,7 @@
 @import "../assets/Sass/Colors";
 
+.ListStyle-none { list-style: none; padding: 0; }
+
 .CardStyle
 {
     background: $CardBackground;
@@ -56,4 +58,35 @@
         transform: scale(1.05, 1.05);
     }
     &:active { color: $DarkGray; }
+}
+
+.FooterBlackStyle
+{
+    background: $CardBlackBackground;
+    box-shadow: $CardsShadow;
+    color: white;
+    padding: 4rem 2rem 0rem 2rem;
+    margin-left: 0; margin-right: 0;
+    //border-radius: 15px;
+    z-index: 0;
+    .FooterTitle { font-size: 1.25rem; }
+    .FooterDivs
+    {
+        div { padding: 0rem 2rem; }
+    }
+
+    a
+    {
+        color: white;
+        text-decoration: none;
+        &:hover { color: $Gray; }
+    }
+
+    hr
+    {
+        border-radius: 50%;
+        height: 0.25rem;
+        margin: 1.5rem 2rem;
+        background-color: white ;
+    }
 }

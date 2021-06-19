@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, AfterContentInit, OnInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'ServiceCard',
@@ -6,7 +6,7 @@ import { Component, AfterViewInit, AfterContentInit, OnInit} from '@angular/core
   styleUrls: ['./service-card.component.scss']
 })
 
-export class ServiceCardComponent implements OnInit, AfterViewInit
+export class ServiceCardComponent implements OnInit
 {
   public ServicesCards = 
   [
@@ -99,15 +99,5 @@ export class ServiceCardComponent implements OnInit, AfterViewInit
 
   ngOnInit(): void 
   {
-  }
-
-  ngAfterViewInit()
-  {
-    
-  }
-
-  ngForRenderer()
-  {
-    console.log("NgFor finished");
   }
 }

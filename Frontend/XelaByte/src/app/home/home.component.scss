@@ -24,7 +24,13 @@
     {
         color: rgb(238, 238, 238);
     }
-} 
+}
+.CircleInfWhite 
+{ 
+    background: $CardBackground !important; 
+    color: black !important; 
+    box-shadow: $BlackBGShadow, inset $CardsShadow;
+}
 
 .HomeList
 {
@@ -88,6 +94,14 @@
         }
     }
 
+    &.CircleInfWhite span
+    { 
+        background: $CardBackground !important; 
+        color: black !important; 
+        box-shadow: $BlackBGShadow;
+        &::after { background: white; }
+    }
+
     &:hover
     {
         span
@@ -141,5 +155,27 @@
         &:first-child p { margin: 2rem 0rem; }
         flex-direction: column !important;
         .DarkButton { width: max-content !important; }
+    }
+}
+
+.SpiceUpPC
+{
+    .SpiceUpTitle { font-size: 2.5rem; }
+    .SpiceUpSubTitle
+    {
+        font-size: 1.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    a i  { margin-left: 1rem; }
+}
+
+.SocialNets
+{
+    .IdeaContainer
+    {
+        .IdeaTitle{ font-size: 2.5rem; }
+        .IdeaSubTitle { margin-top: 0.5rem; margin-bottom: 3.5rem; font-size: 1.5rem; }
     }
 }

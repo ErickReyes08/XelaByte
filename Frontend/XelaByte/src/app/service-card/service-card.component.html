@@ -31,15 +31,13 @@
             </div>
         
             <div class="container d-inline-flex flex-column align-items-center sc-3">
-                <a class="Montserrat-Bold DarkButton my-2" role="button" href="#">Solicitar <i class="bi bi-arrow-right"></i></a>
+                <a id="RequestService_{{label.id}}" class="Montserrat-Bold DarkButton my-2" role="button" href="#">Solicitar <i class="bi bi-arrow-right"></i></a>
                 <p class="Montserrat-SemiBold my-4 h5">7 días de prueba gratis</p>
             </div>
-            <div *ngIf="last;">{{ngForRenderer()}}</div>
+            
+            <label id="TurnLeftButton" class="TurnLButton" role="button" for="slide-{{label.id-1}}"><i class="bi bi-caret-left-fill"></i></label>
+            <label id="TurnRightButton" class="TurnRButton" role="button" for="slide-{{label.id+1}}"><i class="bi bi-caret-right-fill"></i></label>
         </label>
-
-        <a id="TurnLeftButton" class="TurnLButton" role="button"><i class="bi bi-caret-left-fill"></i></a>
-        <a id="TurnRightButton" class="TurnRButton" role="button"><i class="bi bi-caret-right-fill"></i></a>
-
     </div>
 
     <div class="bullets">

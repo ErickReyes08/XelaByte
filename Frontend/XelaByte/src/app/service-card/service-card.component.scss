@@ -15,30 +15,7 @@
         a { text-decoration: none; }
         ul { list-style: none; }
 
-        .TurnLButton, .TurnRButton
-        {
-            font-size: 2rem;
-            color: $FontColor; 
-            height: 100%;
-            position: absolute;
-            z-index: 10;
-            padding-top: calc(50%);
-        }
-
-        .TurnLButton
-        {
-            padding-left: 2rem;
-            transition: all ease 150ms;
-            &:hover { color: $DarkGray_1; transition: all ease 100ms; }
-        }
-
-        .TurnRButton
-        {
-            padding-right: 2rem;
-            left: calc(100% - 4rem);
-            transition: all ease 150ms;
-            &:hover { color: $DarkGray_1; transition: all ease 100ms; }
-        }
+        @media (max-width: 900px) { max-width: 33.75rem; }
     }
 
     &__item
@@ -62,7 +39,33 @@
         {
             p { margin-bottom: 2rem; }
         }
-        .sc-3 { padding: 0rem 1.5rem 1.5rem 1.5rem; }
+        .sc-3 { padding: 0rem 1.5rem 1.5rem 1.5rem; i { margin-left: 1rem; } }
+
+        .TurnLButton, .TurnRButton
+        {
+            font-size: 2rem;
+            color: $LightBlack;
+            height: 100%;
+            position: absolute;
+            z-index: 10;
+            padding-top: calc(50%);
+            @media (max-width: 900px) { padding-top: calc(75%); }
+        }
+
+        .TurnLButton
+        {
+            padding-left: 2rem;
+            transition: all ease 150ms;
+            &:hover { color: $HoverLightBlack; transition: all ease 100ms; }
+        }
+
+        .TurnRButton
+        {
+            padding-right: 2rem;
+            left: calc(100% - 4rem);
+            transition: all ease 150ms;
+            &:hover { color: $HoverLightBlack; transition: all ease 100ms; }
+        }
 
         @for $slide from 1 through 6
         {
@@ -86,6 +89,9 @@
                         {
                             z-index: 0;
                             transform: translateX(13.125rem) scale(0.65);
+
+                            @media (max-width: 900px) { transform: translateX(10.625rem) scale(0.65); }
+                            @media (max-width: 768px) { opacity: 0; }
                         }
                     }
 
@@ -95,6 +101,7 @@
                         {
                             z-index: 1;
                             transform: translateX(6.25rem) scale(0.85);
+                            @media (max-width: 768px) { transform: translateX(2rem); opacity: 0.6; }
                         }
                     }
 
@@ -114,6 +121,8 @@
                         {
                             z-index: 1;
                             transform: translateX(-6.25rem) scale(0.85);
+
+                            @media (max-width: 768px) { transform: translateX(-2rem); opacity: 0.6; }
                         }
                     }
 
@@ -123,6 +132,8 @@
                         {
                             z-index: 0;
                             transform: translateX(-13.125rem) scale(0.65);
+                            @media (max-width: 900px) { transform: translateX(-10.625rem) scale(0.65); }
+                            @media (max-width: 768px) { opacity: 0; }
                         }
                     }
 
@@ -136,7 +147,24 @@
                         }
                     }
                 }
-            }    
+            }
+
+            @if $slide == 1
+            {
+                &--#{$slide}
+                {
+                    .TurnLButton { display: none; }
+                }
+            }
+            
+            @if $slide == 6
+            {
+                &--#{$slide}
+                {
+                    .TurnRButton { display: none; }
+                }
+            }
+
         }
     }
 }
