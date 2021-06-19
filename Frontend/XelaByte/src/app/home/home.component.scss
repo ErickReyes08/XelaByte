@@ -150,7 +150,7 @@
 .TalentContainer
 {
     flex-direction: row !important;
-    @media only screen and (max-width: 450px) 
+    @media only screen and (max-width: 450px)
     {
         &:first-child p { margin: 2rem 0rem; }
         flex-direction: column !important;
