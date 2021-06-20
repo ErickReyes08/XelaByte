@@ -100,4 +100,9 @@ export class ServiceCardComponent implements OnInit
   ngOnInit(): void 
   {
   }
+
+  public doSomething(RequestButtonId: number)
+  {
+    //console.log("Solicitud del botón: " + RequestButtonId);
+  }
 }
