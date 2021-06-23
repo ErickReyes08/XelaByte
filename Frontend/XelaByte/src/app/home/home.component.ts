@@ -13,7 +13,12 @@ export class HomeComponent implements OnInit
 
   ngOnInit(): void 
   {
+  }
 
-
+  goToServices() 
+  { 
+    let IsMobile = (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Windows Phone/i.test(navigator.userAgent)) ? true : false;
+    if(IsMobile) { window.scrollTo(0, 2116); }
+    else { window.scrollTo(0, 2661); }
   }
 }
