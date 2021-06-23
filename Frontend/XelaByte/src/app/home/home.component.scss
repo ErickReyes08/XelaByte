@@ -1,0 +1,180 @@
+@import "../../assets/Sass/Colors";
+
+.CircleInf
+{
+    width: 4rem;
+    height: 4rem;
+    //background-color: $SemiBlack;
+    background: $ButtonsBlackGradient;
+    color: white;
+    justify-content: center;
+    border-radius: 50%;
+    display: inline-block;
+    font-size: 2.2rem;
+    box-shadow: $BlackBGShadow;
+    margin: 0rem 3rem;
+    transition: all ease-in-out 200ms;
+
+    &:hover
+    {
+        transition: all ease-in-out 100ms;
+        transform: translateY(-0.4375rem) scale(1.05, 1.05);
+    }
+    &:active
+    {
+        color: rgb(238, 238, 238);
+    }
+}
+.CircleInfWhite 
+{ 
+    background: $CardBackground !important; 
+    color: black !important; 
+    box-shadow: $BlackBGShadow, inset $CardsShadow;
+}
+
+.HomeList
+{
+    padding: 0;
+    list-style: none;
+    color: $FontColor;
+    i
+    {
+        color: black !important;
+        font-size: 1.3rem;
+    }
+}
+
+.EquipList
+{
+    padding: 0;
+    list-style: none;
+    color: white;
+    img
+    {
+        width: 18rem;
+        height: 18rem;
+        border-radius: 50%;
+        display: inline-block;
+        box-shadow: $CardsShadow;
+        //margin: 0rem 3rem;
+        margin-bottom: 6rem;
+    }
+    li { margin: 6rem 0rem; }
+}
+
+[data-tooltip] 
+{
+    span
+    {
+        font-size: 1rem;
+        opacity: 0;
+        width: max-content;
+        padding: 0.625rem 1.2rem;
+        background-color: $SemiBlack;
+        color: white;
+        border-radius: 0.625rem;
+
+        position: absolute;
+        z-index: 1;
+        bottom: 100%;
+        transition: all ease-in-out 150ms;
+
+        &::after
+        {
+            content: "";
+            width: 0.8rem;
+            height: 0.8rem;
+            position: absolute;
+            z-index: -1;
+            top: 80%;
+            right: 50%;
+            margin-right: -0.4rem;
+            background-color: $SemiBlack;
+            transform: rotate(45deg);
+        }
+    }
+
+    &.CircleInfWhite span
+    { 
+        background: $CardBackground !important; 
+        color: black !important; 
+        box-shadow: $BlackBGShadow;
+        &::after { background: white; }
+    }
+
+    &:hover
+    {
+        span
+        {
+            opacity: 1;
+            transform: translateY(-1rem);
+            transition: all ease-in-out 100ms;
+        }
+    }
+}
+
+.IframeXB
+{
+    width: 5rem;
+    height: 5rem;
+}
+
+.TextCard
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    z-index: -1;
+    //bottom: 100%;
+    //font-size: 1rem;
+    //opacity: 0;
+    width: 18rem;
+    height: 18rem;
+    padding: 0.625rem 1.2rem;
+    //margin: 0rem 3rem;
+    margin-top: 9rem;
+    background-color: white;
+    color: $FontColor;
+    box-shadow: $CardsLight;
+    border-radius: 0.625rem;
+    transition: all ease-in-out 150ms;
+    div
+    {
+        margin-top: 9rem;
+        p{ &:first-child { font-size: 1.25rem; } }
+        p{ &:last-child { font-size: 1rem; } }
+    }
+}
+
+.TalentContainer
+{
+    flex-direction: row !important;
+    @media only screen and (max-width: 450px)
+    {
+        &:first-child p { margin: 2rem 0rem; }
+        flex-direction: column !important;
+        .DarkButton { width: max-content !important; }
+    }
+}
+
+.SpiceUpPC
+{
+    .SpiceUpTitle { font-size: 2.5rem; }
+    .SpiceUpSubTitle
+    {
+        font-size: 1.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 2rem;
+    }
+    a i  { margin-left: 1rem; }
+}
+
+.SocialNets
+{
+    .IdeaContainer
+    {
+        .IdeaTitle{ font-size: 2.5rem; }
+        .IdeaSubTitle { margin-top: 0.5rem; margin-bottom: 3.5rem; font-size: 1.5rem; }
+    }
+}

@@ -1,0 +1,23 @@
+$MontserratPaths: 
+url("../Fonts/MontserratAlternates-Bold.woff"),
+url("../Fonts/MontserratAlternates-ExtraBold.woff"),  
+url("../Fonts/MontserratAlternates-Light.woff"),
+url("../Fonts/MontserratAlternates-Medium.woff"),
+url("../Fonts/MontserratAlternates-Regular.woff"),
+url("../Fonts/MontserratAlternates-SemiBold.woff"),
+url("../Fonts/MontserratAlternates-Thin.woff");
+$MontserratNames: "Bold", "ExtraBold", "Light", "Medium", "Regular", "SemiBold", "Thin";
+
+@each $MontserratPath in $MontserratPaths
+{
+    $i: index($MontserratPaths, $MontserratPath);
+    $val: "Montserrat " + nth($MontserratNames, $i);
+    $Class: "Montserrat-" + nth($MontserratNames, $i);
+    @font-face
+    {
+        font-family: $val;
+        src: $MontserratPath;
+    }
+
+    .#{$Class} { font-family: $val !important;  }
+}

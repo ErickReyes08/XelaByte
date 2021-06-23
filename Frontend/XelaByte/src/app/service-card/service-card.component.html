@@ -1,0 +1,50 @@
+<section class="section slider">
+
+    <div class="text-center SliderInfoContainer">
+        <p class="Montserrat-Bold h1 mb-0">Lista de servicios</p>
+        <p class="Montserrat-Regular h5 mt-4">servicios al alcance de tu bolsillo</p>
+    </div>
+
+    <input type="radio" name="slider" id="slide-1" class="slider__radio" checked>
+    <input type="radio" name="slider" id="slide-2" class="slider__radio">
+    <input type="radio" name="slider" id="slide-3" class="slider__radio">
+    <input type="radio" name="slider" id="slide-4" class="slider__radio">
+    <input type="radio" name="slider" id="slide-5" class="slider__radio">
+    <input type="radio" name="slider" id="slide-6" class="slider__radio">
+
+    <div class="slider__holder text-center d-inline-flex flex-row">
+        
+        <label id="labelsList" *ngFor="let label of ServicesCards; let last = last" for="slide-{{label.id}}" class="slider__item slider__item--{{label.id}} d-inline-flex flex-column text-dark">
+            <div class="container sc-1">
+                <p class="Montserrat-Bold h1">{{label.Title}}</p>
+                <p class="Montserrat-SemiBold h2 my-3">Q {{label.Price}}</p>
+            </div>
+        
+            <div class="container sc-2">
+                <p class="Montserrat-SemiBold">{{label.Description}}</p>
+                <ul *ngFor="let item of label.Features" class="CardList px-0">
+                    <li class="my-3">
+                        <p class="Montserrat-Regular h5 my-0"><i class="bi bi-patch-check-fill mx-3"></i>{{item}}</p>
+                    </li>
+                </ul>
+            </div>
+        
+            <div class="container d-inline-flex flex-column align-items-center sc-3">
+                <a (click)="doSomething(label.id)" id="RequestService_{{label.id}}" class="Montserrat-Bold DarkButton my-2" role="button">Solicitar <i class="bi bi-arrow-right"></i></a>
+                <p class="Montserrat-SemiBold my-4 h5">7 días de prueba gratis</p>
+            </div>
+            
+            <label id="TurnLeftButton" class="TurnLButton" role="button" for="slide-{{label.id-1}}"><i class="bi bi-caret-left-fill"></i></label>
+            <label id="TurnRightButton" class="TurnRButton" role="button" for="slide-{{label.id+1}}"><i class="bi bi-caret-right-fill"></i></label>
+        </label>
+    </div>
+
+    <div class="bullets">
+        <label for="slide-1" class="bullets__item bullets__item--1"></label>
+        <label for="slide-2" class="bullets__item bullets__item--2"></label>
+        <label for="slide-3" class="bullets__item bullets__item--3"></label>
+        <label for="slide-4" class="bullets__item bullets__item--4"></label>
+        <label for="slide-5" class="bullets__item bullets__item--5"></label>
+        <label for="slide-6" class="bullets__item bullets__item--6"></label>
+    </div>
+</section>
