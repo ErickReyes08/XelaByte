@@ -7,7 +7,7 @@
 {
     display: none;
     position: fixed;
-    z-index: 1555;
+    z-index: 1060;
     left: 0;
     top: 0;
     width: 100%;
@@ -38,13 +38,14 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: #fff;
+    background: $CardBackground;
     box-shadow: $CardsShadow;
     border-radius: 0.9375rem;
     outline: 0;
-    margin: auto;
-    padding: 0;
+    margin: 1.75rem auto;
+    padding: 0rem 2.5rem;
     width: 70%;
+    pointer-events: auto;
     transform: scale(0);
     opacity: 0;
     $FormShowVar: 150ms ease-in-out showForm;
@@ -83,12 +84,21 @@
 
 .Modal-exit
 {
-    color: $SemiBlack;
-    font-size: 1.375rem;
+    color: white;
+    background: $ButtonsBlackGradient;
+    box-shadow: $CardsShadow;
+    border-bottom-left-radius: 0.9375rem;
+    border-top-right-radius: 0.9375rem;
+    font-size: 1rem;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
     position: absolute;
-    left: 95%;
-    top: 9%;
+    left: 100%;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-left: -2.5rem;
+    transition: all ease-in-out 150ms;
+    &:hover { transition: all ease-in-out 100ms; color: $Gray; transform: scale(1.1); }
 }
 /*--------------------------*/

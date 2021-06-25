@@ -1,13 +1,40 @@
 <div name="Form" id="ContactForm" class="Modal" tabindex="-1" aria-hidden="true">
     <div class="Modal-dialog Modal-dialog-centered">
         <div class="Modal-content border-0">
-            <a role="button" class="Modal-exit"><i class="bi bi-x"></i></a>
-            <div class="modal-header border-0">
-                <p class="Montserrat-SemiBold">Texto de prueba</p>
+            <a role="button" name="FormCloseButton" class="Modal-exit"><i class="bi bi-x-lg"></i></a>
+            <div class="modal-header border-0 header justify-content-center text-center">
+                <p class="Montserrat-Bold">Contacto</p>
             </div>
-            <div class="modal-body border-0">
+            <div class="modal-body border-0 body Montserrat-Regular">
+                <form>
+                    <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
+                            <small class="Montserrat-Bold"><i class="bi bi-person-badge-fill h5"></i>Nombre *</small>
+                            <input class="w-inherit" type="text" placeholder="Ingrese su nombre">
+                        </div>
+                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
+                            <small class="Montserrat-Bold"><i class="bi bi-envelope-fill h5"></i>Email *</small>
+                            <input class="w-inherit" type="email" placeholder="Ingrese su Email">
+                        </div>
+                    </div>
+                    <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
+                            <small class="Montserrat-Bold"><i class="bi bi-pencil-square h5"></i>Asunto *</small>
+                            <input class="m-3 w-inherit" type="text" placeholder="Asunto">
+                        </div>
+                    </div>
+                    <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
+                            <small class="Montserrat-Bold"><i class="bi bi-chat-square-dots-fill h5"></i>Mensaje *</small>
+                            <textarea class="m-3 Montserrat-Regular" placeholder="Mensaje" required maxlength="1000"></textarea>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="modal-footer border-0">
+            <div class="modal-footer border-0 footer">
+                <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                    <a role="button" class="DarkButton Montserrat-SemiBold">Enviar <i class="bi bi-forward-fill"></i></a>
+                </div>
             </div>
         </div>
     </div>

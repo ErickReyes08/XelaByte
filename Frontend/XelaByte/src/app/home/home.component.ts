@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit
   private FormsPairs = function()
   {
     let FormButtons = Array.from(document.getElementsByName("FormButton"));
+    let FormCloseButtons = Array.from(document.getElementsByName("FormCloseButton"));
     let Forms = Array.from(document.getElementsByName("Form"));
     let res = [];
     for(let x = 0; x < FormButtons.length; x++)
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit
       res.push(
       {
         Button: FormButtons[x],
+        CloseButton: FormCloseButtons[x],
         Form: Forms[x]
       });
     }
@@ -49,7 +51,7 @@ export class HomeComponent implements OnInit
       };
       /*----------------*/
 
-      /*CERRANDO EL FORM*/ 
+      /*CERRANDO EL FORM*/
       let isMobile = this.IsMobile();
       let OnExitForm = function()
       {
@@ -66,7 +68,9 @@ export class HomeComponent implements OnInit
       }
 
       //CUANDO PRESIONA AFUERA DEL FORMULARIO LO CIERRA
-      window.onclick = function(event: MouseEvent) { if(event.target === item.Form){ OnExitForm(); } }
+      //window.onclick = function(event: MouseEvent) { if(event.target === item.Form){ OnExitForm(); } }
+      //CUANDO PRESIONA EL BOTÓN DE CERRAR
+      item.CloseButton.onclick = function(event: MouseEvent) { OnExitForm(); };
       /*----------------*/
     }
   }
