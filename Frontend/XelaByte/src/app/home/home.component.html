@@ -21,11 +21,14 @@
     </div>
 
     <div class="container responsive-iframe text-center my-5 d-inline-flex flex-column CardStyle">
+        <!--Cambio de link por época proveniente del backend-->
         <iframe class="mx-auto" src="https://www.youtube.com/embed/JIZLzhUFLvY" title="XelaByte" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>        
     </div>
 
     <div class="container text-center my-5 d-inline-flex flex-column CardBlackStyle">
         <p class="Montserrat-Bold text-light text-center mt-0 mb-0 h2">Nuestro equipo</p>
+
+        <!--Componente de equipo-->
         <ul class="EquipList Montserrat-SemiBold flex">
             <li class="d-inline-flex flex-row align-itmes-center mx-5">
                 <img src="../../assets/Img/2.jpg">
@@ -46,6 +49,8 @@
                 </div>
             </li>
         </ul>
+        <!------------------------>
+
         <p class="Montserrat-Regular text-light text-center h5 mt-5">Somos un grupo de expertos en <b class="Montserrat-Bold text-light">Matenimiento preventivo y Correctivo</b> de equipos de computación</p>
     </div>
 
@@ -56,10 +61,11 @@
                 <p class="Montserrat-Regular my-0 h4">Somos un equipo multidisciplinario que está en constante crecimiento</p>
             </div>
             <div class="container d-inline-flex flex-column justify-content-center align-items-center col-3 my-3">
-                <a class="Montserrat-SemiBold DarkButton" role="button" href="#">
+                <a name="FormButton" class="Montserrat-SemiBold DarkButton" role="button">
                     Aplicar ahora
                     <i class="bi bi-caret-right-fill"></i>
                 </a>
+                <TalentForm></TalentForm>
             </div>
         </div>
     </div>
@@ -72,7 +78,7 @@
         <div class="d-inline-flex flex-column text-center align-items-center">
             <p class="Montserrat-Bold my-3 SpiceUpTitle">¡Es momento de darle vida a tu compu!</p>
             <p class="Montserrat-Regular SpiceUpSubTitle">no pierdas la oportunidad de mejorar el rendimiento de tu equipo</p>
-            <a class="Montserrat-SemiBold DarkButton" role="button" href="#">Agendar cita<i class="bi bi-journal-bookmark-fill"></i></a>
+            <a name="FormButton" class="Montserrat-SemiBold DarkButton" role="button">Agendar cita<i class="bi bi-journal-bookmark-fill"></i></a>
         </div>
     </div>
 
@@ -90,6 +96,7 @@
     </div>
 </div>
 
+<!--Footer como componente para recibimiento de datos por parte del backend-->
 <footer class="container-fluid text-center d-inline-flex flex-column FooterBlackStyle">
     <div class="container d-inline-flex flex-row FooterDivs">
         <div class="d-inline-flex flex-column align-items-start col">
@@ -117,6 +124,7 @@
     </div>
     <hr>
     <div class="container d-inline-flex flex-column align-items-center">
-        <p class="Montserrat-Bold FooterCreditsText">© 2021 TeknoAnyar</p>
+        <p class="Montserrat-Bold FooterCreditsText">© 2021 IFrame Tech</p>
     </div>
 </footer>
+<!--------------------------------------------------------------------------->

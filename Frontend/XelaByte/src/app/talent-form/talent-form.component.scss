@@ -1,0 +1,36 @@
+@import "../home/home.component.scss";
+@import "../../assets/Sass/Forms";
+
+.header
+{
+    p
+    {
+        font-size: 2.5rem;
+        margin-top: 1rem;
+        //margin-bottom: 0.625rem;
+    };
+}
+
+.footer
+{
+    a
+    {
+        width: 100% !important;
+        margin-bottom: 2.25rem;
+    }
+
+    i { margin-left: 0.625rem; }
+}
+
+.errorText
+{
+    transition: all ease-in-out 150ms;
+    color: #963838;
+}
+
+.dynamicButtonsContainer
+{
+    margin-top: 2rem;
+    width: max-content;
+    height: auto;
+}
