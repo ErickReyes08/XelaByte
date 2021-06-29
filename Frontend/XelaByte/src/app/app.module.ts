@@ -1,7 +1,9 @@
+//MODULOS
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-//COMPONENTES
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+//COMPONENTES
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
@@ -12,7 +14,6 @@ import { RequestServicesFormComponent } from './request-services-form/request-se
 import { MakeAppointmentFormComponent } from './make-appointment-form/make-appointment-form.component';
 //DIRECTIVAS
 import { DragNDropDirective } from './drag-ndrop.directive';
-//SERVICIOS
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DragNDropDirective } from './drag-ndrop.directive';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

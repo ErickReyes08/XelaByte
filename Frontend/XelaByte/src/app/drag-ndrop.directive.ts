@@ -10,6 +10,7 @@ export class DragNDropDirective
 {
   @Output() file = new EventEmitter<any>();
   @HostBinding("class.fileOver") isfileOver: boolean = false;
+  @HostBinding("class.fileLoading") fileDropped: boolean = false;
   @HostBinding("class.errorText") isfileInValid: boolean = false;
 
   constructor(private sanitizer: DomSanitizer) { }
@@ -43,11 +44,12 @@ export class DragNDropDirective
       setTimeout(() => { this.isfileInValid = false; }, 2000);
       this.file.emit(new File([], "fileError")); 
       return false; 
-    } 
+    }
 
     ev.preventDefault();
     ev.stopPropagation();
     console.log("Archivo dropeado");
+    this.fileDropped = true;
 
     let file = ev.dataTransfer?.files.item(0);
     this.file.emit(file);
