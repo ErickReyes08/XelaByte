@@ -1,6 +1,5 @@
 import { ThrowStmt, TransitiveCompileNgModuleMetadata } from '@angular/compiler';
 import { Directive, HostBinding, HostListener, Output, EventEmitter } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Directive({
   selector: '[DragNDrop]'
@@ -13,7 +12,7 @@ export class DragNDropDirective
   @HostBinding("class.fileLoading") fileDropped: boolean = false;
   @HostBinding("class.errorText") isfileInValid: boolean = false;
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor() { }
 
   @HostListener("dragover", ["$event"]) public onDragOver(ev: DragEvent)
   {

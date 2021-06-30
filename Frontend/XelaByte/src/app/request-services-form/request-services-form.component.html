@@ -1,1 +1,56 @@
-<p>request-services-form works!</p>
+<div name="ServiceForm" id="ServicesForm" class="Modal" tabindex="-1" aria-hidden="true">
+    <div class="Modal-dialog Modal-dialog-centered">
+        <div class="Modal-content border-0">
+            <a role="button" name="ServiceFormCloseButton" class="Modal-exit"><i class="bi bi-x-lg"></i></a>
+            <div class="modal-header border-0 header justify-content-center text-center">
+                <p class="Montserrat-Bold">Solicitar servicio</p>
+            </div>
+            <div class="modal-body border-0 body Montserrat-Regular">
+                <form>
+                    <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
+                            <small class="Montserrat-Bold"><i class="bi bi-person-badge-fill h5"></i>Nombre *</small>
+                            <input class="w-inherit" type="text" placeholder="Ingrese su nombre">
+                        </div>
+                    </div>
+                    <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
+                            <small class="Montserrat-Bold"><i class="bi bi-telephone-fill h5"></i>Teléfono *</small>
+                            <input class="w-inherit" type="tel" placeholder="Ingrese su número de teléfono">
+                        </div>
+                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
+                            <small class="Montserrat-Bold"><i class="bi bi-envelope-fill h5"></i>Email *</small>
+                            <input class="w-inherit" type="email" placeholder="Ingrese su Email">
+                        </div>
+                    </div>
+                    <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
+                            <p class="Montserrat-Bold h3 my-4 align-self-center">Seleccione un servicio</p>
+                            <ul class="container my-3 mx-5 d-inline-flex flex-column justify-content-start align-items-start">
+                                <li class="d-inline-flex flex-row justify-content-center align-items-center my-2" *ngFor="let serviceName of RequestServices.ServicesCards">
+                                    <input id="ServiceCB_{{serviceName.id}}" type="checkbox" class="form-check-input mx-3">
+                                    <label for="ServiceCB_{{serviceName.id}}" role="button" class="Montserrat-SemiBold">{{serviceName.Title}}</label>
+                                </li>
+                                <li class="d-inline-flex flex-row justify-content-center align-items-center my-2">
+                                    <input id="ServiceCBOtherOption" type="checkbox" class="form-check-input mx-3">
+                                    <label id="LabelServiceCBOtherOption" for="ServiceCBOtherOption" role="button" class="Montserrat-SemiBold">Otro servicio</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
+                            <small class="Montserrat-Bold"><i class="bi bi-wrench h5"></i>Otro servicio (opcional)</small>
+                            <textarea id="OtherServiceArea" class="Montserrat-Regular" placeholder="Ingrese el servicio que desea solicitar" maxlength="1000"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-0 footer">
+                <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                    <a role="button" class="DarkButton Montserrat-SemiBold">Solicitar<i class="bi bi-forward-fill"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

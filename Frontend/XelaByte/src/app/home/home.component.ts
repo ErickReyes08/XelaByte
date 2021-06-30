@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'Home',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent implements OnInit 
+export class HomeComponent implements OnInit, AfterViewInit
 {
   private FormsPairs = function()
   {
@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit
     let FormCloseButtons = Array.from(document.getElementsByName("FormCloseButton"));
     let Forms = Array.from(document.getElementsByName("Form"));
     let res = [];
-    for(let x = 0; x < FormButtons.length; x++)
+    for(let x = 0; x < Forms.length; x++)
     {
       res.push(
       {
@@ -23,6 +23,8 @@ export class HomeComponent implements OnInit
         Form: Forms[x]
       });
     }
+    console.log(res);
+    console.log(FormButtons);
     return res;
   }
 
@@ -31,6 +33,44 @@ export class HomeComponent implements OnInit
   ngOnInit(): void
   {
     this.SetFormAnimations();
+  }
+
+  ngAfterViewInit()
+  {
+    //FORMULARIO DE SERVICIOS
+    let ServiceFormButtons = Array.from(document.getElementsByName("ServiceFormButton"));
+    console.log(ServiceFormButtons);
+    let ServiceFormCloseButton = document.getElementsByName("ServiceFormCloseButton")[0] as HTMLElement;
+    let ServiceForm = document.getElementsByName("ServiceForm")[0] as HTMLElement;
+    //ABRIENDO EL FORMULARIO
+    for(let ServiceFormButton of ServiceFormButtons)
+    {
+      ServiceFormButton.onclick = () => 
+      { 
+        ServiceForm.classList.toggle("d-block");
+        setTimeout(() => 
+        {
+          if(this.IsMobile()) document.body.classList.toggle("ModalActive-m");
+          else document.body.classList.toggle("ModalActive");
+          ServiceForm.classList.toggle("Show"); ServiceForm.children[0].children[0].classList.toggle("Show-content");
+        }, 2)
+      };
+    }
+    //CERRANDO EL FORMULARIO
+    let isMobile = this.IsMobile();
+    ServiceFormCloseButton.onclick = function()
+    {
+      let child = ServiceForm.children[0].children[0];
+      child.classList.replace("Show-content", "Hide-content");
+      ServiceForm.classList.remove("Show");
+      setTimeout(() => 
+      { 
+        child.classList.remove("Hide-content");
+        if(isMobile) document.body.classList.remove("ModalActive-m");
+        else document.body.classList.remove("ModalActive");
+        ServiceForm.classList.remove("d-block"); 
+      }, 152);
+    }
   }
 
   SetFormAnimations()
@@ -70,7 +110,7 @@ export class HomeComponent implements OnInit
       //CUANDO PRESIONA AFUERA DEL FORMULARIO LO CIERRA
       //window.onclick = function(event: MouseEvent) { if(event.target === item.Form){ OnExitForm(); } }
       //CUANDO PRESIONA EL BOTÓN DE CERRAR
-      item.CloseButton.onclick = function(event: MouseEvent) { OnExitForm(); };
+      item.CloseButton.onclick = function() { OnExitForm(); };
       /*----------------*/
     }
   }
