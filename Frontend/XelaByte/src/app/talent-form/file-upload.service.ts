@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, observable, Subscription } from 'rxjs';
+import { HomeComponent } from '../home/home.component';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { Observable, observable, Subscription } from 'rxjs';
 export class FileUploadService implements OnInit
 {
   readonly FileTitle = "Seleccionar un archivo";
-  readonly FileSubTitle = "o arrastre el archivo a esta área";
+  FileSubTitle = "o arrastre el archivo a esta área";
 
   public forLabelFile = "inputFile";
   public fileTitle = "";
@@ -19,15 +20,33 @@ export class FileUploadService implements OnInit
 
   public FileUploadedLink: string = "";
 
+  InputLocked: boolean = false;
+
   constructor(private http:HttpClient) { }
 
   ngOnInit()
   {
   }
 
+  //MÉTODO PARA DETECTAR SI ABRIÓ EL BUSCADOR DE ARCHIVOS PARA BLOQUEAR EL ARRASTRE DE ARCHIVOS EN SIMULTANEO
+  FileInputClicked(): void
+  {
+    //console.log("BrowseOpened");
+    let inputFile = document.getElementById("inputFile") as HTMLInputElement;
+    let containFiles = false;
+    window.onfocus = function()
+    {
+      if(inputFile.files) containFiles = true;
+      else containFiles = false; 
+      window.onfocus = null;
+    }
+    this.InputLocked = containFiles;
+  }
+
   //MÉTODO PARA ADQUIRIR EL ARCHIVO SI LO ARRASTRÓ MANUALMENTE
   fileDropped($event: File): void
   {
+    if(this.InputLocked){ return; }
     this.fileTryUpload($event);
     //console.log("Archivo: " + $event.name);
   }
@@ -47,12 +66,14 @@ export class FileUploadService implements OnInit
       { 
         fileContainer.classList.add("fileLoading");
         this.fileTryUpload(fileList.item(0));
-      } 
+      }
       else
       {
         fileContainer.classList.add("errorText");
         this.fileTryUpload(new File([], "fileError"))
         setTimeout(() => { fileContainer.classList.remove("errorText"); }, 2000);
+
+        this.InputLocked = false;
       }
       (<HTMLInputElement>document.getElementById("inputFile")).value = '';
       //console.log("Archivo: " + fileList.item(0)?.name);
@@ -68,6 +89,7 @@ export class FileUploadService implements OnInit
       this.forLabelFile="";
       this.fileTitle = "Error, la extensión del archivo no es correcta"; this.fileSubTitle = "";
       setTimeout(() => { this.fileTitle = this.FileTitle; this.fileSubTitle = this.FileSubTitle; this.forLabelFile="inputFile"; }, 2000);
+      this.InputLocked = false;
     }
     else
     { 
@@ -93,6 +115,7 @@ export class FileUploadService implements OnInit
 
       //CREAR EL BOTÓN DE CANCELAR PARA TENER LA OPORTUNIDAD DE DE CANCELAR EL PROCESO DE SUBIDA
       this.CreateButton("CancelButton");
+      this.InputLocked = true;
     }
   }
 
@@ -165,8 +188,10 @@ export class FileUploadService implements OnInit
     this.fileTitle = this.FileTitle;
     this.fileSubTitle = this.FileSubTitle;
     this.forLabelFile = "inputFile";
-    (document.getElementsByClassName("FileInputContainer").item(0))?.classList.remove("fileLoading");
+    document.getElementById("FileInputContainer")!.classList.remove("fileLoading");
     this.RemoveButton("Remove");
+    this.InputLocked = false;
   }
 
+  IsMobile(): boolean { return (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Windows Phone/i.test(navigator.userAgent)) ? true : false; }
 }

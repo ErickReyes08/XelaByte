@@ -1,5 +1,6 @@
 import { ThrowStmt, TransitiveCompileNgModuleMetadata } from '@angular/compiler';
 import { Directive, HostBinding, HostListener, Output, EventEmitter } from '@angular/core';
+import { FileUploadService } from './talent-form/file-upload.service';
 
 @Directive({
   selector: '[DragNDrop]'
@@ -12,10 +13,11 @@ export class DragNDropDirective
   @HostBinding("class.fileLoading") fileDropped: boolean = false;
   @HostBinding("class.errorText") isfileInValid: boolean = false;
 
-  constructor() { }
+  constructor(public FileUploader: FileUploadService) { }
 
   @HostListener("dragover", ["$event"]) public onDragOver(ev: DragEvent)
   {
+    if(this.FileUploader.InputLocked) { return; }
     ev.preventDefault();
     ev.stopPropagation();
     //ACCIONES EN CASO DE ARRASTRAR EL OBJETO AL INPUT
@@ -34,6 +36,8 @@ export class DragNDropDirective
 
   @HostListener("drop", ["$event"]) public onDrop(ev: DragEvent)
   {
+    console.log(this.FileUploader.InputLocked);
+    if(this.FileUploader.InputLocked) { return; }
     this.isfileOver = false;
 
     console.log(ev.dataTransfer?.files.item(0)?.type);

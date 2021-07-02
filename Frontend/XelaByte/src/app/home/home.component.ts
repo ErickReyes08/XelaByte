@@ -23,8 +23,7 @@ export class HomeComponent implements OnInit, AfterViewInit
         Form: Forms[x]
       });
     }
-    console.log(res);
-    console.log(FormButtons);
+
     return res;
   }
 
@@ -39,7 +38,6 @@ export class HomeComponent implements OnInit, AfterViewInit
   {
     //FORMULARIO DE SERVICIOS
     let ServiceFormButtons = Array.from(document.getElementsByName("ServiceFormButton"));
-    console.log(ServiceFormButtons);
     let ServiceFormCloseButton = document.getElementsByName("ServiceFormCloseButton")[0] as HTMLElement;
     let ServiceForm = document.getElementsByName("ServiceForm")[0] as HTMLElement;
     //ABRIENDO EL FORMULARIO
@@ -120,5 +118,6 @@ export class HomeComponent implements OnInit, AfterViewInit
     if(this.IsMobile()) { window.scrollTo(0, 2116); }
     else { window.scrollTo(0, 2661); }
   }
+  
   IsMobile(): boolean { return (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Windows Phone/i.test(navigator.userAgent)) ? true : false; }
 }

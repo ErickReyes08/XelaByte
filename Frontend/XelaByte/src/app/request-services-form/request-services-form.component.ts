@@ -41,7 +41,7 @@ export class RequestServicesFormComponent implements OnInit, AfterContentInit
     OtherServiceCB.onclick = OtherServiceClick;
     Label.onload = OtherServiceClick;
 
-    
+    this.RequestServices.CanSetServices = true;
   }
 
 }

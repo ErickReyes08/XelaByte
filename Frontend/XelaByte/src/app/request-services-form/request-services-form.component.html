@@ -28,7 +28,7 @@
                             <p class="Montserrat-Bold h3 my-4 align-self-center">Seleccione un servicio</p>
                             <ul class="container my-3 mx-5 d-inline-flex flex-column justify-content-start align-items-start">
                                 <li class="d-inline-flex flex-row justify-content-center align-items-center my-2" *ngFor="let serviceName of RequestServices.ServicesCards">
-                                    <input id="ServiceCB_{{serviceName.id}}" type="checkbox" class="form-check-input mx-3">
+                                    <input name="ServicesCheckBox" id="ServiceCB_{{serviceName.id}}" type="checkbox" class="form-check-input mx-3">
                                     <label for="ServiceCB_{{serviceName.id}}" role="button" class="Montserrat-SemiBold">{{serviceName.Title}}</label>
                                 </li>
                                 <li class="d-inline-flex flex-row justify-content-center align-items-center my-2">

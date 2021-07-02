@@ -98,14 +98,19 @@ export class RequestServicesService
   ];
 
   public ServicesInputs: any;
+  public CanSetServices: boolean = false;
 
   constructor() { }
   
   SetCheckBoxInput(ID_CheckBox: string)
   {
+    if(!this.CanSetServices) return;
+
     let ServiceInput = (document.getElementById("ServiceCB_" + ID_CheckBox) as HTMLInputElement);
-    console.log(ServiceInput);
-    //ServiceInput.checked = true;
+    let ServicesInputs = Array.from(document.getElementsByName("ServicesCheckBox")) as HTMLInputElement[];
+    for(let input of ServicesInputs) { input.checked = false; }
+    //console.log(ServiceInput);
+    ServiceInput.checked = true;
   }
 
 }

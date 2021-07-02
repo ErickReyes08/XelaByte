@@ -43,13 +43,13 @@
                     <div class="container d-inline-flex flex-row justify-content-center align-items-center">
                         <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
                             <small class="Montserrat-Bold"><i class="bi bi-chat-square-dots-fill h5"></i>Currículum [.pdf máximo 8MB] (opcional)</small>
-                            <div class="container d-grid FileInputContainer" DragNDrop (file)="this.FileUploader.fileDropped($event)">
-                                <input id="inputFile" class="Montserrat-Regular FileInput" type="file" accept="application/pdf" (change)="this.FileUploader.fileBrowseHandler($event)">
+                            <div id="FileInputContainer" class="container d-grid FileInputContainer" DragNDrop (file)="this.FileUploader.fileDropped($event)">
+                                <input id="inputFile" class="Montserrat-Regular FileInput" type="file" accept="application/pdf" (change)="this.FileUploader.fileBrowseHandler($event)" (click)="this.FileUploader.FileInputClicked()">
                                 <div class="container d-inline-flex flex-column align-items-center justify-content-center fileUploadLabelContainer">
                                     <label for="{{this.FileUploader.forLabelFile}}" role="button" class="Montserrat-SemiBold d-inline-flex flex-column align-items-center justify-content-center align-self-center">
                                         <p class="my-3"><i class="bi bi-file-arrow-down-fill h1"></i></p>
                                         <p id="FileUploadTitle" class="m-0 Montserrat-Bold">{{this.FileUploader.fileTitle}}</p>
-                                        <p id="FileUploadSubTitle" class="m-0 Montserrat-Regular"> 
+                                        <p id="FileUploadSubTitle" class="m-0 Montserrat-Regular">
                                             {{this.FileUploader.fileSubTitle}}
                                         </p>
                                         <div class="loadingContainer flex-row align-items-center justify-content-center">

@@ -18,11 +18,14 @@ export class TalentFormComponent implements OnInit
 
   ngOnInit(): void
   {
+    if(this.FileUploader.IsMobile()) { this.FileUploader.FileSubTitle = ""; }
+
     this.FileUploader.fileTitle = this.FileUploader.FileTitle;
     this.FileUploader.fileSubTitle = this.FileUploader.FileSubTitle;
     this.FileUploader.FileButtons.set("CancelButton", () => { const dynamicComponentFactory = this.componentFactoryResolver.resolveComponentFactory(CancelButtonComponent); const componentRef = this.ActionButton.createComponent(dynamicComponentFactory); });
     this.FileUploader.FileButtons.set("RemoveButton", () => { const dynamicComponentFactory = this.componentFactoryResolver.resolveComponentFactory(RemoveButtonComponent); const componentRef = this.ActionButton.createComponent(dynamicComponentFactory); });
     this.FileUploader.FileButtons.set("Remove", () => { this.ActionButton.remove(); });
+
   }
 
 }

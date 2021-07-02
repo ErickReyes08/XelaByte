@@ -1,0 +1,67 @@
+@import "../../assets/Sass/Colors";
+
+.FooterBlackStyle
+{
+    background-color: $BodyBlack;
+    //background: $CardBlackBackground;
+    box-shadow: $CardsShadow;
+    color: white;
+    padding: 4rem 0rem 0rem 0rem;
+    margin-left: 0; margin-right: 0;
+    //border-radius: 15px;
+    z-index: 0;
+    .FooterTitle { font-size: 1.25rem; }
+    .FooterDivs
+    {
+        div { padding: 0 2rem 4rem 2rem; }
+        @media only screen and (max-width: 450px)
+        {
+            flex-direction: column !important;
+            div { margin: 0 0 4rem 0; }
+        }
+    }
+    .FooterList
+    {
+        p { font-size: 0.875rem; }
+    }
+
+    a
+    {
+        color: white;
+        text-decoration: none;
+        &:hover { color: $Gray; }
+    }
+
+    hr
+    {
+        border-radius: 50%;
+        height: 0.25rem;
+        margin: 1.5rem 2rem;
+        background-color: white;
+        opacity: 0.6;
+    }
+
+    .FooterCreditsText { font-size: 1rem; }
+
+    .HomeFooterFooter
+    {
+        background-color: $SemiBlack;
+        padding: 1.5rem 0 0 0;
+        margin: 0;
+
+    }
+
+    .HomeFooterFooterSocialNets
+    {
+        background-color: $DarkGray_2;
+        padding: 1rem 0rem;
+        margin: 1.25rem 0 0 0;
+        
+    }
+
+    .SocialNets
+    {
+        padding: 1rem 0;
+        font-size: 1.5rem;
+    }
+}

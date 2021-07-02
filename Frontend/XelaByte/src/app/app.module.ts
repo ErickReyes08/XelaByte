@@ -14,6 +14,7 @@ import { RequestServicesFormComponent } from './request-services-form/request-se
 import { MakeAppointmentFormComponent } from './make-appointment-form/make-appointment-form.component';
 //DIRECTIVAS
 import { DragNDropDirective } from './drag-ndrop.directive';
+import { HomeFooterComponent } from './home-footer/home-footer.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DragNDropDirective } from './drag-ndrop.directive';
     DragNDropDirective,
     RequestServicesFormComponent,
     MakeAppointmentFormComponent,
+    HomeFooterComponent,
   ],
   imports: [
     BrowserModule,
