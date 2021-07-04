@@ -14,7 +14,7 @@
 
     <div class="slider__holder text-center d-inline-flex flex-row">
         
-        <label id="labelsList" *ngFor="let label of RequestServices.ServicesCards; let last = last" for="slide-{{label.id}}" class="slider__item slider__item--{{label.id}} d-inline-flex flex-column text-dark">
+        <label id="labelsList" *ngFor="let label of RequestServices.ServicesCards" for="slide-{{label.id}}" class="slider__item slider__item--{{label.id}} d-inline-flex flex-column text-dark">
             <div class="container sc-1">
                 <p class="Montserrat-Bold h1">{{label.Title}}</p>
                 <p class="Montserrat-SemiBold h2 my-3">Q {{label.Price}}</p>

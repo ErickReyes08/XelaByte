@@ -1,50 +1,49 @@
 <div name="Form" id="TalentForm" class="Modal" tabindex="-1" aria-hidden="true">
     <div class="Modal-dialog Modal-dialog-centered">
+        
         <div class="Modal-content border-0">
             <a role="button" name="FormCloseButton" class="Modal-exit"><i class="bi bi-x-lg"></i></a>
             <div class="modal-header border-0 header justify-content-center text-center">
                 <p class="Montserrat-Bold">Solicitud de empleo</p>
             </div>
             <div class="modal-body border-0 body Montserrat-Regular">
-                <form>
-
+                <form id="talentForm" #talentForm="ngForm" (ngSubmit)="SendForm()">
                     <div class="container d-inline-flex flex-row justify-content-center align-items-center">
-                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <input class="w-inherit" type="text" name="talent-FullName" [(ngModel)]="TalentFormData.FullName" placeholder="Ingrese su nombre completo" required>
                             <small class="Montserrat-Bold"><i class="bi bi-person-badge-fill h5"></i>Nombre completo *</small>
-                            <input class="w-inherit" type="" placeholder="Ingrese su nombre completo">
                         </div>
                     </div>
 
                     <div class="container d-inline-flex flex-row justify-content-center align-items-center">
-                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <input class="w-inherit" type="number" name="talent-Age" [(ngModel)]="TalentFormData.Age" min="16" max="70" placeholder="Ingrese su edad" required>
                             <small class="Montserrat-Bold"><i class="bi bi-calendar2-fill h5"></i>Edad *</small>
-                            <input class="w-inherit" type="number" min="16" max="99" placeholder="Ingrese su edad">
                         </div>
-                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <input class="w-inherit" type="text" name="talent-Address" [(ngModel)]="TalentFormData.Address" placeholder="Ingrese su dirección de residencia" required>
                             <small class="Montserrat-Bold"><i class="bi bi-signpost-fill h5"></i>Dirección *</small>
-                            <input class="w-inherit" type="url" placeholder="Ingrese su dirección de residencia">
                         </div>
                     </div>
 
                     <div class="container d-inline-flex flex-row justify-content-center align-items-center">
-                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <input class="w-inherit" type="tel" pattern="[0-9]{4}-[0-9]{4}" name="talent-Telephone" [(ngModel)]="TalentFormData.Telephone" placeholder="Teléfono: 1234-5678" required>
                             <small class="Montserrat-Bold"><i class="bi bi-telephone-fill h5"></i>Teléfono *</small>
-                            <input class="w-inherit" type="tel" placeholder="Ingrese su número de teléfono">
                         </div>
-                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
-                            <small class="Montserrat-Bold"><i class="bi bi-award-fill h5"></i>Grado académico *</small>
-                            <select class="w-inherit">
-                                <option value="bach">Bachillerato</option>
-                                <option value="complete">Carrera completa</option>
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <select class="w-inherit" name="talent-AcademicDegree" [(ngModel)]="TalentFormData.AcademicDegree">
+                                <option value="Bachillerato">Bachillerato</option>
+                                <option value="Carrera completa">Carrera completa</option>
                             </select>
+                            <small class="Montserrat-Bold"><i class="bi bi-award-fill h5"></i>Grado académico *</small>
                         </div>
                     </div>
 
                     <div class="container d-inline-flex flex-row justify-content-center align-items-center">
-                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
-                            <small class="Montserrat-Bold"><i class="bi bi-chat-square-dots-fill h5"></i>Currículum [.pdf máximo 8MB] (opcional)</small>
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
                             <div id="FileInputContainer" class="container d-grid FileInputContainer" DragNDrop (file)="this.FileUploader.fileDropped($event)">
-                                <input id="inputFile" class="Montserrat-Regular FileInput" type="file" accept="application/pdf" (change)="this.FileUploader.fileBrowseHandler($event)" (click)="this.FileUploader.FileInputClicked()">
+                                <input id="inputFile" class="Montserrat-Regular FileInput" type="file" name="talent-Curriculum" accept="application/pdf" (change)="this.FileUploader.fileBrowseHandler($event)" (click)="this.FileUploader.FileInputClicked()">
                                 <div class="container d-inline-flex flex-column align-items-center justify-content-center fileUploadLabelContainer">
                                     <label for="{{this.FileUploader.forLabelFile}}" role="button" class="Montserrat-SemiBold d-inline-flex flex-column align-items-center justify-content-center align-self-center">
                                         <p class="my-3"><i class="bi bi-file-arrow-down-fill h1"></i></p>
@@ -62,15 +61,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <small class="Montserrat-Bold"><i class="bi bi-file-earmark-bar-graph-fill h5"></i>Currículum [máximo 8MB] (opcional)</small>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 footer">
+                        <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                            <button type="submit" class="DarkButton Montserrat-SemiBold">Enviar <i class="bi bi-forward-fill"></i></button>
                         </div>
                     </div>
                 </form>
-            </div>
-
-            <div class="modal-footer border-0 footer">
-                <div class="container d-inline-flex flex-row justify-content-center align-items-center">
-                    <a role="button" class="DarkButton Montserrat-SemiBold">Enviar <i class="bi bi-forward-fill"></i></a>
-                </div>
             </div>
         </div>
     </div>

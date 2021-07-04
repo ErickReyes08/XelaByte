@@ -9,9 +9,12 @@
     border-color: $FormBorder;
     border-width: 2px;
     padding: 0.625rem 1rem;
+    flex-direction: column-reverse !important;
     transition: all ease-in-out 150ms;
     small
     {
+        //color: blue;
+        transition: color 200ms ease-in-out;
         margin: 1rem 1rem 0rem 1rem;
         i { margin-right: 0.75rem; }
     }
@@ -36,6 +39,15 @@ input, select, textarea
         transition: all ease 100ms; outline: none;
     }
     //&:focus-visible { transition: all ease 100ms; box-shadow: 0px 0px 0px 1px #000000cc, $InputsShadow; outline: none !important;  }
+    &.ng-dirty.ng-invalid
+    {
+        &~small
+        {
+            transition: color 100ms ease-in-out;
+            color: $ErrorColor;
+            animation: shakeError ease-in-out 300ms 1;
+        }
+    }
 }
 
 textarea
@@ -94,3 +106,19 @@ textarea
 }
 
 .w-inherit { width: inherit; }
+
+//ANIMACIONES
+.shakeError { animation: shakeError ease-in-out 300ms 1 !important; }
+@keyframes shakeError
+{
+    0% { transform: translateX(0px) translateY(0px); }
+    10% { transform: translateX(3px) translateY(3px); }
+    20% { transform: translateX(-3px) translateY(-3px); }
+    35% { transform: translateX(2px) translateY(2px); }
+    45% { transform: translateX(-2px) translateY(-2px); }
+    60% { transform: translateX(1px) translateY(1px); }
+    70% { transform: translateX(-1px) translateY(-1px); }
+    80% { transform: translateX(1px) translateY(1px); }
+    90% { transform: translateX(-1px) translateY(-1px); }
+    100% { transform: translateX(0px) translateY(0px); }
+}

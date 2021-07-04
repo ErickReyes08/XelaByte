@@ -1,4 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { forkJoin } from 'rxjs';
+import { HomeFooterComponent } from '../home-footer/home-footer.component';
+import { RequestServicesService } from '../request-services-form/request-services.service';
 
 @Component({
   selector: 'Home',
@@ -6,8 +10,24 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent implements OnInit, AfterViewInit
+export class HomeComponent implements OnInit
 {
+  //DATOS DEL APARTADO DE NUESTRO EQUIPO
+  public TeamData = 
+  [
+    {
+      MemberName: "Samuel Rabi Romero",
+      MembersPosition: "Depto. Administración",
+      MemberImageURL: "../../assets/Img/2.jpg"
+    },
+    {
+      MemberName: "Erick Alfonso Reyes",
+      MembersPosition: "Depto. Soporte Técnico",
+      MemberImageURL: "../../assets/Img/2.jpg"
+    }
+  ];
+  //------------------------------------
+
   private FormsPairs = function()
   {
     let FormButtons = Array.from(document.getElementsByName("FormButton"));
@@ -27,15 +47,65 @@ export class HomeComponent implements OnInit, AfterViewInit
     return res;
   }
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void
   {
     this.SetFormAnimations();
+    this.activatedRoute.data.subscribe((response)=>
+      {
+        //forkJoin PARA DETECTAR CUANDO LOS OBSERVABLES TERMINARON DE ADQUIRIR LOS DATOS DEL SERVIDOR
+        forkJoin([response.HomeData.get("TeamData"), response.HomeData.get("ServicesData"), response.HomeData.get("FooterData")]).subscribe((data: any) =>
+        {
+          //console.log(data);
+          //ADQUIRIENDO LOS DATOS DE LA REQUEST DE "TeamData"
+          if(typeof(data[0]) === "object"){ console.log(data[0][0]); }
+
+          //ADQUIRIENDO LOS DATOS DE LA REQUEST DE "ServicesData"
+          if(typeof(data[1]) === "object"){ console.log(data[1][0]); }
+
+          //ADQUIRIENDO LOS DATOS DE LA REQUEST DE "FooterData"
+          if(typeof(data[2]) === "object"){ console.log(data[2][0]); }
+          //this.RequestServices.ServicesCards = [];
+          //this.TeamData = [];
+
+
+          //LUEGO DE OBTENER Y ESTABLECER LOS DATOS DE LOS SERVICIOS SE CONFIGURA LA ANIMACIÓN DEL FORMULARIO DE SERVICIOS
+          this.SetServicesFormAnimation();
+        });
+      }
+    );
   }
 
-  ngAfterViewInit()
+  RecieveFormsData($event: any): void
   {
+    let FormInputsText: [HTMLInputElement, HTMLElement | undefined][] | undefined = $event.formInputsText;
+    let FormButton: HTMLButtonElement | undefined = $event.formButton;
+    let FormInfo: { Data: any, URL: string } | undefined = $event.formInfo;
+
+    //SI NO HAY DATOS, SIGNIFICA QUE HUBO UN ERROR POR LO QUE SE LE MOSTRARÁ AL USUARIO GRÁFICAMENTE SOBRE EL ERROR
+    if(FormInfo === undefined)
+    {
+      for(let [input, small] of FormInputsText!)
+      {
+        input.classList.replace("ng-pristine", "ng-dirty");
+        if(small === undefined) continue;
+        small!.classList.add("shakeError");
+        setTimeout(() => { small!.classList.remove("shakeError"); }, 310);
+      }
+      FormButton!.classList.add("shakeError");
+      setTimeout(() => { FormButton!.classList.remove("shakeError"); }, 310);
+    }
+    else
+    {
+      //RELIZAR EL MÉTODO POST DE LA INFORMACIÓN DEL FORMULARIO
+      console.log(FormInfo);
+    }
+  }
+
+  SetServicesFormAnimation(): void
+  {
+    console.log("AfterViewInit");
     //FORMULARIO DE SERVICIOS
     let ServiceFormButtons = Array.from(document.getElementsByName("ServiceFormButton"));
     let ServiceFormCloseButton = document.getElementsByName("ServiceFormCloseButton")[0] as HTMLElement;

@@ -2,6 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, observable, Subscription } from 'rxjs';
 import { HomeComponent } from '../home/home.component';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,8 @@ import { HomeComponent } from '../home/home.component';
 
 export class FileUploadService implements OnInit
 {
-  readonly FileTitle = "Seleccionar un archivo";
-  FileSubTitle = "o arrastre el archivo a esta área";
+  readonly FileTitle = "Seleccionar un archivo .pdf";
+  FileSubTitle = "o arrastre el archivo .pdf a esta área";
 
   public forLabelFile = "inputFile";
   public fileTitle = "";
@@ -19,6 +20,10 @@ export class FileUploadService implements OnInit
   public FileButtons = new Map<string, any>();
 
   public FileUploadedLink: string = "";
+  public FileUploadedData: any = undefined;
+  public FileUploaded: boolean = false;
+  public RequestingFile!: Subscription;
+  
 
   InputLocked: boolean = false;
 
@@ -33,7 +38,7 @@ export class FileUploadService implements OnInit
   {
     //console.log("BrowseOpened");
     let inputFile = document.getElementById("inputFile") as HTMLInputElement;
-    let containFiles = false;
+    let containFiles = true;
     window.onfocus = function()
     {
       if(inputFile.files) containFiles = true;
@@ -80,7 +85,7 @@ export class FileUploadService implements OnInit
     }
   }
 
-  public RequestingFile!: Subscription;
+  
   //MÉTODO PARA SUBIR EL ARCHIVO AL SERVIDOR
   fileTryUpload($file: File | null): void
   {
@@ -88,8 +93,8 @@ export class FileUploadService implements OnInit
     {
       this.forLabelFile="";
       this.fileTitle = "Error, la extensión del archivo no es correcta"; this.fileSubTitle = "";
-      setTimeout(() => { this.fileTitle = this.FileTitle; this.fileSubTitle = this.FileSubTitle; this.forLabelFile="inputFile"; }, 2000);
-      this.InputLocked = false;
+      this.InputLocked = true;
+      setTimeout(() => { this.fileTitle = this.FileTitle; this.fileSubTitle = this.FileSubTitle; this.forLabelFile="inputFile"; this.InputLocked = false; }, 2000);
     }
     else
     { 
@@ -105,7 +110,10 @@ export class FileUploadService implements OnInit
           this.fileTitle = $file?.name; this.fileSubTitle = "";
           (document.getElementsByClassName("FileInputContainer").item(0))?.classList.remove("fileLoading");
           console.log(event.link);
+          this.FileUploadedData = { id: uuidv4(), event };
           this.FileUploadedLink = event.link;
+          this.FileUploaded = true;
+          console.log(this.FileUploadedData);
           //CREAR EL BOTÓN DE BORRAR SI ES QUE SE TERMINÓ EL PROCESO DE SUBIR EL ARCHIVO
           this.RemoveButton("Remove");
           this.CreateButton("RemoveButton");
@@ -191,6 +199,8 @@ export class FileUploadService implements OnInit
     document.getElementById("FileInputContainer")!.classList.remove("fileLoading");
     this.RemoveButton("Remove");
     this.InputLocked = false;
+    this.FileUploaded = false;
+    this.FileUploadedData = undefined;
   }
 
   IsMobile(): boolean { return (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Windows Phone/i.test(navigator.userAgent)) ? true : false; }

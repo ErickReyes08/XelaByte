@@ -13,6 +13,11 @@ body
     {
         font-size: 10px !important;
     }
+
+    ::-webkit-input-placeholder { font-size: 0.75rem; }
+    ::-moz-input-placeholder { font-size: 0.75rem; }
+    ::-ms-input-placeholder { font-size: 0.75rem; }
+    ::-o-input-placeholder { font-size: 0.75rem; }
 }
 
 ::-webkit-scrollbar { width: 16px; }

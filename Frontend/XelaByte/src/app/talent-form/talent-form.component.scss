@@ -29,7 +29,7 @@
 
 .footer
 {
-    a
+    button
     {
         width: 100% !important;
         margin-bottom: 2.25rem;
@@ -41,7 +41,7 @@
 .errorText
 {
     transition: all ease-in-out 150ms;
-    color: #963838;
+    color: $ErrorColor;
 }
 
 .dynamicButtonsContainer

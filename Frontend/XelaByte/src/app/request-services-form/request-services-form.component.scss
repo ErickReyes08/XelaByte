@@ -20,7 +20,7 @@
         flex-direction: row;
         @media only screen and (max-width: 450px) 
         { 
-            flex-direction: column !important; 
+            flex-direction: column-reverse !important; 
             margin-left: 0px !important; margin-right: 0px !important;
         }
     }
@@ -52,7 +52,7 @@
 
 .footer
 {
-    a
+    button
     {
         width: 100% !important;
         margin-bottom: 2.25rem;

@@ -6,39 +6,39 @@
                 <p class="Montserrat-Bold">Agendar una cita</p>
             </div>
             <div class="modal-body border-0 body Montserrat-Regular">
-                <form>
+                <form id="makeAppointmentForm" #makeAppointmentForm="ngForm" (ngSubmit)="SendForm()">
                     <div class="container d-inline-flex flex-row justify-content-center align-items-center">
-                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
-                            <small class="Montserrat-Bold"><i class="bi bi-person-badge-fill h5"></i>Nombre *</small>
-                            <input class="w-inherit" type="email" placeholder="Ingrese su nombre completo">
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <input class="w-inherit" type="email" name="makeAppointment-Name" [(ngModel)]="MakeAppointmentFormData.Name" placeholder="Ingrese su nombre completo" required>
+                            <small class="Montserrat-Bold"><i class="bi bi-person-badge-fill h5"></i>Nombre completo *</small>
                         </div>
                     </div>
                     <div class="container d-inline-flex flex-row justify-content-center align-items-center">
-                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <input class="w-inherit" type="text" name="makeAppointment-Telephone" [(ngModel)]="MakeAppointmentFormData.Telephone" placeholder="Teléfono 1234-5678" pattern="[0-9]{4}-[0-9]{4}" required>
                             <small class="Montserrat-Bold"><i class="bi bi-telephone-fill h5"></i>Teléfono *</small>
-                            <input class="w-inherit" type="text" placeholder="Ingrese su número de teléfono">
                         </div>
-                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <input class="w-inherit" type="email" name="makeAppointment-Email" [(ngModel)]="MakeAppointmentFormData.Email" placeholder="Ingrese su Email" required>
                             <small class="Montserrat-Bold"><i class="bi bi-envelope-fill h5"></i>Email *</small>
-                            <input class="w-inherit" type="email" placeholder="Ingrese su Email">
                         </div>
                     </div>
                     <div class="container d-inline-flex flex-row justify-content-center align-items-center">
-                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <input id="AppointmentDate" class="w-inherit" type="date" name="makeAppointment-Date" [(ngModel)]="MakeAppointmentFormData.Date" required>
                             <small class="Montserrat-Bold"><i class="bi bi-calendar-plus-fill h5"></i>Fecha *</small>
-                            <input id="AppointmentDate" class="w-inherit" type="date">
                         </div>
-                        <div class="container input-c m-3 d-inline-flex flex-column justify-content-left align-items-start">
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <input class="w-inherit" type="time" name="makeAppointment-Hour" [(ngModel)]="MakeAppointmentFormData.Hour" min="06:00" max="18:00" required>
                             <small class="Montserrat-Bold"><i class="bi bi-clock-fill h5"></i>Hora *</small>
-                            <input class="w-inherit" type="time">
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 footer">
+                        <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                            <button type="submit" class="DarkButton Montserrat-SemiBold">Enviar <i class="bi bi-forward-fill"></i></button>
                         </div>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer border-0 footer">
-                <div class="container d-inline-flex flex-row justify-content-center align-items-center">
-                    <a role="button" class="DarkButton Montserrat-SemiBold">Enviar <i class="bi bi-forward-fill"></i></a>
-                </div>
             </div>
         </div>
     </div>
