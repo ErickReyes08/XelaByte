@@ -9,6 +9,29 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 
 export class HomeResolverService implements Resolve<any>
 {
+
+  //HOME FOOTER DATA
+  FooterInfo: { OfficeLocations: string[], TelephoneContacts: string[], ContactsEmails: string[] } =
+  {
+    OfficeLocations: 
+    [
+      "Diagonal 15 7-61 zona 5. Quetgo",
+      "Diagonal 15 7-61 zona 5. Quetgo",
+      "Diagonal 15 7-61 zona 5. Quetgo"
+    ],
+    TelephoneContacts: 
+    [
+      "+502 3511-5034",
+      "+502 5563-8774",
+      "+502 4183-9918"
+    ],
+    ContactsEmails: 
+    [
+      "info@XelaByte.com"
+    ]
+  };
+  //----------------
+
   HomeData: Map<string, Observable<any>> = new Map<string, any>();
 
   constructor(private HttpClient: HttpClient) { }

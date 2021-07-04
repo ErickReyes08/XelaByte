@@ -9,7 +9,7 @@ import { Observable, Subscription } from 'rxjs';
 export class RequestServicesService 
 {
 
-  public ServicesCards = 
+  public ServicesCards: { id: number, Title: string, Price: number, Description: string, Features: string[] }[] =
   [
     {
       id: 1,

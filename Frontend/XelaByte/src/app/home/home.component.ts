@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { HomeFooterComponent } from '../home-footer/home-footer.component';
+import { HomeResolverService } from '../home-resolver.service';
 import { RequestServicesService } from '../request-services-form/request-services.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { RequestServicesService } from '../request-services-form/request-service
 export class HomeComponent implements OnInit
 {
   //DATOS DEL APARTADO DE NUESTRO EQUIPO
-  public TeamData = 
+  public TeamData: { MemberName: string, MembersPosition: string, MemberImageURL: string }[] = 
   [
     {
       MemberName: "Samuel Rabi Romero",
@@ -47,34 +47,33 @@ export class HomeComponent implements OnInit
     return res;
   }
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, private Resolver: HomeResolverService, private RequestService: RequestServicesService) { }
 
   ngOnInit(): void
   {
     this.SetFormAnimations();
     this.activatedRoute.data.subscribe((response)=>
+    {
+      //forkJoin PARA DETECTAR CUANDO LOS OBSERVABLES TERMINARON DE ADQUIRIR LOS DATOS DEL SERVIDOR
+      forkJoin([response.HomeData.get("TeamData"), response.HomeData.get("ServicesData"), response.HomeData.get("FooterData")]).subscribe((data: any) =>
       {
-        //forkJoin PARA DETECTAR CUANDO LOS OBSERVABLES TERMINARON DE ADQUIRIR LOS DATOS DEL SERVIDOR
-        forkJoin([response.HomeData.get("TeamData"), response.HomeData.get("ServicesData"), response.HomeData.get("FooterData")]).subscribe((data: any) =>
-        {
-          //console.log(data);
-          //ADQUIRIENDO LOS DATOS DE LA REQUEST DE "TeamData"
-          if(typeof(data[0]) === "object"){ console.log(data[0][0]); }
+        //console.log(data);
+        //ADQUIRIENDO LOS DATOS DE LA REQUEST DE "TeamData"
+        if(typeof(data[0]) === "object"){ /*this.TeamData = data[0];*/ console.log(data[0][0]); }
 
-          //ADQUIRIENDO LOS DATOS DE LA REQUEST DE "ServicesData"
-          if(typeof(data[1]) === "object"){ console.log(data[1][0]); }
+        //ADQUIRIENDO LOS DATOS DE LA REQUEST DE "ServicesData"
+        if(typeof(data[1]) === "object"){ /*this.RequestService.ServicesCards = data[1];*/ console.log(data[1][0]); }
 
-          //ADQUIRIENDO LOS DATOS DE LA REQUEST DE "FooterData"
-          if(typeof(data[2]) === "object"){ console.log(data[2][0]); }
-          //this.RequestServices.ServicesCards = [];
-          //this.TeamData = [];
+        //ADQUIRIENDO LOS DATOS DE LA REQUEST DE "FooterData"
+        if(typeof(data[2]) === "object"){ /*this.Resolver.FooterInfo = data[2];*/ console.log(data[2][0]); }
 
-
-          //LUEGO DE OBTENER Y ESTABLECER LOS DATOS DE LOS SERVICIOS SE CONFIGURA LA ANIMACIÓN DEL FORMULARIO DE SERVICIOS
-          this.SetServicesFormAnimation();
-        });
-      }
-    );
+        //this.RequestServices.ServicesCards = [];
+        //this.TeamData = [];
+        //this.Resolver.FooterInfo = { OfficeLocations: [], TelephoneContacts: [], ContactsEmails: [] };
+        //LUEGO DE OBTENER Y ESTABLECER LOS DATOS DE LOS SERVICIOS SE CONFIGURA LA ANIMACIÓN DEL FORMULARIO DE SERVICIOS
+        this.SetServicesFormAnimation();
+      });
+    });
   }
 
   RecieveFormsData($event: any): void

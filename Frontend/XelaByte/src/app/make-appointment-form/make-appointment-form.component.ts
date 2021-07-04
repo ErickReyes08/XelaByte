@@ -55,14 +55,6 @@ export class MakeAppointmentFormComponent implements OnInit
     }
     //------------------------------------------------
 
-    //VERIFICANDO SI LOS INPUTS DE FECHA Y HORA SON VALIDOS
-    let dateInput = formElement.getElementsByClassName("input-c")[3].children.item(0) as HTMLInputElement;
-    let dateSmall = formElement.getElementsByClassName("input-c")[3].children.item(1) as HTMLElement;
-    let hourInput = formElement.getElementsByClassName("input-c")[4].children.item(0) as HTMLInputElement;
-    let hourSmall = formElement.getElementsByClassName("input-c")[4].children.item(1) as HTMLElement;
-
-    let dateInputDateTime = new Date(dateInput.value), todayDate = new Date(this.todayDateStr);
-    //if(dateInputDateTime < todayDate) dateInput.classList.replace("ng-valid", "ng-invalid");
     //SI HAY CAMPOS INVÁLIDOS SE AÑADE EL BOTÓN A LA LISTA Y SE MANDAN LOS CAMPOS AL PADRE
     if(formInputsText.length >= 1)
     {
@@ -76,9 +68,29 @@ export class MakeAppointmentFormComponent implements OnInit
     }
   }
 
+  //MÉTODOS PARA PREVENIR EL INGRESO ERRONEO DE DATOS EN LA FECHA Y HORA DE LA CITA
   DateChanged($event: any): void
   {
-    console.log("DateChanged: ");
+    let formElement = document.getElementById("makeAppointmentForm")!;
+    let dateInput = formElement.getElementsByClassName("input-c")[3].children.item(0) as HTMLInputElement;
+    let dateInputDateTime = new Date(dateInput.value), todayDate = new Date(this.todayDateStr);
+    //console.log(dateInputDateTime.toDateString() + " < " + todayDate + "?: " + (dateInputDateTime < todayDate));
+    if(dateInputDateTime < todayDate || dateInputDateTime.toDateString() == "Invalid Date") { setTimeout(() => { dateInput.classList.replace("ng-valid", "ng-invalid"); }, 100); }
+    else dateInput.classList.replace("ng-invalid", "ng-valid");
+    //console.log("Changed");
+  }
+
+  HourChanged($event: any): void
+  {
+    let formElement = document.getElementById("makeAppointmentForm")!;
+    let hourInput = formElement.getElementsByClassName("input-c")[4].children.item(0) as HTMLInputElement;
+
+    let minHour = 6, maxHour = 18;
+    let Hour: number = +hourInput.value.split(":")[0], Minute: number = +hourInput.value.split(":")[1];
+
+    if(Hour < minHour || Hour > maxHour || Hour == 0 || (Hour == maxHour && Minute >= 1)) { setTimeout(() => { hourInput.classList.replace("ng-valid", "ng-invalid"); }, 100); }
+    else hourInput.classList.replace("ng-invalid", "ng-valid");
+    //console.log("Hour: " + Hour + "\nMinute: " + Minute);
   }
 
 }

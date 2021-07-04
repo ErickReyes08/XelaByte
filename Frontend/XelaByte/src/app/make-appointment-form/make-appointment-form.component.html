@@ -25,12 +25,12 @@
                     </div>
                     <div class="container d-inline-flex flex-row justify-content-center align-items-center">
                         <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
-                            <input id="AppointmentDate" class="w-inherit" type="date" name="makeAppointment-Date" [(ngModel)]="MakeAppointmentFormData.Date" required>
+                            <input (ngModelChange)="DateChanged($event)" id="AppointmentDate" class="w-inherit" type="date" name="makeAppointment-Date" [(ngModel)]="MakeAppointmentFormData.Date" required>
                             <small class="Montserrat-Bold"><i class="bi bi-calendar-plus-fill h5"></i>Fecha *</small>
                         </div>
                         <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
-                            <input class="w-inherit" type="time" name="makeAppointment-Hour" [(ngModel)]="MakeAppointmentFormData.Hour" min="06:00" max="18:00" required>
-                            <small class="Montserrat-Bold"><i class="bi bi-clock-fill h5"></i>Hora *</small>
+                            <input (ngModelChange)="HourChanged($event)" class="w-inherit" type="time" name="makeAppointment-Hour" [(ngModel)]="MakeAppointmentFormData.Hour" min="06:00" max="18:00" required>
+                            <small class="Montserrat-Bold"><i class="bi bi-clock-fill h5"></i>Hora *<small>(de 6AM a 18PM)</small></small>
                         </div>
                     </div>
                     <div class="modal-footer border-0 footer">

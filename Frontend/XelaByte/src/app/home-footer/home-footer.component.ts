@@ -8,8 +8,7 @@ import { HomeResolverService } from '../home-resolver.service';
 })
 export class HomeFooterComponent implements OnInit 
 {
-
-  constructor(private Resolver: HomeResolverService) { }
+  constructor(public Resolver: HomeResolverService) { }
 
   ngOnInit(): void
   {
