@@ -42,6 +42,7 @@ export class HomeResolverService implements Resolve<any>
     this.HomeData.set("TeamData", this.HttpClient.get("https://jsonplaceholder.typicode.com/comments?postId=1"));
     this.HomeData.set("ServicesData", this.HttpClient.get("https://jsonplaceholder.typicode.com/comments?postId=2"));
     this.HomeData.set("FooterData", this.HttpClient.get("https://jsonplaceholder.typicode.com/comments?postId=3"));
+    this.HomeData.set("HomeVideoLink", this.HttpClient.get("https://jsonplaceholder.typicode.com/comments?postId=4"));
     return this.HomeData;
   }
 }

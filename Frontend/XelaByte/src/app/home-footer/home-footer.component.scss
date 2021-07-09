@@ -13,13 +13,14 @@
     .FooterTitle { font-size: 1.25rem; }
     .FooterDivs
     {
-        div { padding: 0 2rem 4rem 2rem; }
+        div { padding: 0 2rem 2.5rem 2rem; }
         @media only screen and (max-width: 450px)
         {
             flex-direction: column !important;
             div { margin: 0 0 1rem 0; padding: 0 2rem 1rem 2rem; }
         }
     }
+
     .FooterList
     {
         p { font-size: 0.875rem; }
@@ -43,12 +44,21 @@
 
     .FooterCreditsText { font-size: 1rem; }
 
+    .HomeLowerInf
+    {
+        a
+        {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: white;
+            &:hover { color: $DarkGray; }
+        }
+    }
+
     .HomeFooterFooter
     {
         background-color: $SemiBlack;
-        //padding: 1.25rem 0 0 0;
         margin: 0;
-
     }
 
     .HomeFooterFooterSocialNets
@@ -56,12 +66,21 @@
         background-color: $DarkGray_2;
         padding: 1rem 0rem;
         margin: 1.25rem 0 0 0;
-        
     }
 
     .SocialNets
     {
         margin: 1rem 0 1rem 0;
         font-size: 1.5rem;
+    }
+
+    .IFrameTechFooter
+    {
+        flex-direction: row;
+        @media only screen and (max-width: 450px)
+        {
+            padding-top: 2rem;
+            flex-direction: column;
+        }
     }
 }

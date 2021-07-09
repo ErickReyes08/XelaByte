@@ -14,9 +14,9 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import { TalentFormComponent } from './talent-form/talent-form.component'; import { CancelButtonComponent } from './talent-form/CancelButton.component'; import { RemoveButtonComponent } from './talent-form/RemoveButton.component';
 import { RequestServicesFormComponent } from './request-services-form/request-services-form.component';
 import { MakeAppointmentFormComponent } from './make-appointment-form/make-appointment-form.component';
+import { HomeFooterComponent } from './home-footer/home-footer.component';
 //DIRECTIVAS
 import { DragNDropDirective } from './drag-ndrop.directive';
-import { HomeFooterComponent } from './home-footer/home-footer.component';
 
 @NgModule({
   declarations: [

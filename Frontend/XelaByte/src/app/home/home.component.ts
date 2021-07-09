@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin } from 'rxjs';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { HomeResolverService } from '../home-resolver.service';
 import { RequestServicesService } from '../request-services-form/request-services.service';
 
@@ -12,6 +13,8 @@ import { RequestServicesService } from '../request-services-form/request-service
 
 export class HomeComponent implements OnInit
 {
+  //LINK DEL VIDEO DE LA PÁGINA
+  HomeVideoLink: SafeResourceUrl = "";
   //DATOS DEL APARTADO DE NUESTRO EQUIPO
   public TeamData: { MemberName: string, MembersPosition: string, MemberImageURL: string }[] = 
   [
@@ -47,7 +50,7 @@ export class HomeComponent implements OnInit
     return res;
   }
 
-  constructor(private activatedRoute: ActivatedRoute, private Resolver: HomeResolverService, private RequestService: RequestServicesService) { }
+  constructor(private activatedRoute: ActivatedRoute, private Resolver: HomeResolverService, private RequestService: RequestServicesService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void
   {
@@ -55,7 +58,7 @@ export class HomeComponent implements OnInit
     this.activatedRoute.data.subscribe((response)=>
     {
       //forkJoin PARA DETECTAR CUANDO LOS OBSERVABLES TERMINARON DE ADQUIRIR LOS DATOS DEL SERVIDOR
-      forkJoin([response.HomeData.get("TeamData"), response.HomeData.get("ServicesData"), response.HomeData.get("FooterData")]).subscribe((data: any) =>
+      forkJoin([response.HomeData.get("TeamData"), response.HomeData.get("ServicesData"), response.HomeData.get("FooterData"), response.HomeData.get("HomeVideoLink")]).subscribe((data: any) =>
       {
         //console.log(data);
         //ADQUIRIENDO LOS DATOS DE LA REQUEST DE "TeamData"
@@ -72,6 +75,8 @@ export class HomeComponent implements OnInit
         //this.Resolver.FooterInfo = { OfficeLocations: [], TelephoneContacts: [], ContactsEmails: [] };
         //LUEGO DE OBTENER Y ESTABLECER LOS DATOS DE LOS SERVICIOS SE CONFIGURA LA ANIMACIÓN DEL FORMULARIO DE SERVICIOS
         this.SetServicesFormAnimation();
+        let HomeVideoURL = "https://www.youtube.com/embed/JIZLzhUFLvY";
+        this.HomeVideoLink = this.sanitizer.bypassSecurityTrustResourceUrl(HomeVideoURL);
       });
     });
   }

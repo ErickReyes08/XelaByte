@@ -12,7 +12,7 @@ export class ServiceCardComponent implements OnInit, AfterContentInit
   
   constructor(public RequestServices: RequestServicesService) { }
 
-  ngOnInit(): void 
+  ngOnInit(): void
   {
   }
 
