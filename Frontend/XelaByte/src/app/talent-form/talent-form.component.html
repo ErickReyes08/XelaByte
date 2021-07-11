@@ -7,7 +7,7 @@
                 <p class="Montserrat-Bold">Solicitud de empleo</p>
             </div>
             <div class="modal-body border-0 body Montserrat-Regular">
-                <form id="talentForm" #talentForm="ngForm" (ngSubmit)="SendForm()">
+                <form id="talentForm" #talentForm="ngForm" (ngSubmit)="SendForm(talentForm)">
                     <div class="container d-inline-flex flex-row justify-content-center align-items-center">
                         <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
                             <input class="w-inherit" type="text" name="talent-FullName" [(ngModel)]="TalentFormData.FullName" placeholder="Ingrese su nombre completo" required>

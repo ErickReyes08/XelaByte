@@ -6,7 +6,7 @@
                 <p class="Montserrat-Bold">Solicitar servicio</p>
             </div>
             <div class="modal-body border-0 body Montserrat-Regular">
-                <form id="requestServicesForm" #requestServicesForm="ngForm" (ngSubmit)="SendForm()">
+                <form id="requestServicesForm" #requestServicesForm="ngForm" (ngSubmit)="SendForm(requestServicesForm)">
                     <div class="container d-inline-flex flex-row justify-content-center align-items-center">
                         <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
                             <input class="w-inherit" type="text" name="requestServices-Name" [(ngModel)]="RequestServicesFormData.Name" placeholder="Ingrese su nombre" required>

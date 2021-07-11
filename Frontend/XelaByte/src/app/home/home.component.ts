@@ -4,6 +4,7 @@ import { forkJoin } from 'rxjs';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { HomeResolverService } from '../home-resolver.service';
 import { RequestServicesService } from '../request-services-form/request-services.service';
+import { MessagesService } from '../messages-container/messages.service';
 
 @Component({
   selector: 'Home',
@@ -50,7 +51,12 @@ export class HomeComponent implements OnInit
     return res;
   }
 
-  constructor(private activatedRoute: ActivatedRoute, private Resolver: HomeResolverService, private RequestService: RequestServicesService, private sanitizer: DomSanitizer) { }
+  constructor(
+    private activatedRoute: ActivatedRoute, 
+    private Resolver: HomeResolverService, 
+    private RequestService: RequestServicesService, 
+    private sanitizer: DomSanitizer,
+    private MessageService: MessagesService) { }
 
   ngOnInit(): void
   {
@@ -85,7 +91,7 @@ export class HomeComponent implements OnInit
   {
     let FormInputsText: [HTMLInputElement, HTMLElement | undefined][] | undefined = $event.formInputsText;
     let FormButton: HTMLButtonElement | undefined = $event.formButton;
-    let FormInfo: { Data: any, URL: string } | undefined = $event.formInfo;
+    let FormInfo: { Data: any, FormFrom: string, URL: string } | undefined = $event.formInfo;
 
     //SI NO HAY DATOS, SIGNIFICA QUE HUBO UN ERROR POR LO QUE SE LE MOSTRARÁ AL USUARIO GRÁFICAMENTE SOBRE EL ERROR
     if(FormInfo === undefined)
@@ -103,6 +109,12 @@ export class HomeComponent implements OnInit
     else
     {
       //RELIZAR EL MÉTODO POST DE LA INFORMACIÓN DEL FORMULARIO
+      setTimeout(() => {
+        switch(FormInfo?.FormFrom)
+        {
+          case "ContactForm": this.MessageService.SendMessage("Los datos se enviaron correctamente", "Su mensaje para contactarnos de envió correctamente, espere una respuesta en los proximos días en la dirección de correco electrónico ingresado", 6000, {AcceptButton: ()=>{}}); break;
+        }
+      }, 2000);
       console.log(FormInfo);
     }
   }

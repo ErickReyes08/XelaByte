@@ -38,14 +38,15 @@ export class FileUploadService implements OnInit
   {
     //console.log("BrowseOpened");
     let inputFile = document.getElementById("inputFile") as HTMLInputElement;
-    let containFiles = true;
-    window.onfocus = function()
+    //let containFiles = true;
+    window.onfocus = () =>
     {
-      if(inputFile.files) containFiles = true;
-      else containFiles = false; 
+      console.log("ON WINDOWS FOCUS");
+      if(inputFile.files?.length){ /*console.log("ENTER IF");*/ this.InputLocked = true; } 
+      else { /*console.log("ENTER ELSE");*/ this.InputLocked = false; }
       window.onfocus = null;
     }
-    this.InputLocked = containFiles;
+    //this.InputLocked = containFiles;
   }
 
   //MÉTODO PARA ADQUIRIR EL ARCHIVO SI LO ARRASTRÓ MANUALMENTE

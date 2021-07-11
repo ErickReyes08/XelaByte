@@ -6,7 +6,7 @@
                 <p class="Montserrat-Bold">Contacto</p> 
             </div>
             <div class="modal-body border-0 body Montserrat-Regular">
-                <form id="contactForm" #contactForm="ngForm" (ngSubmit)="SendForm()">
+                <form id="contactForm" #contactForm="ngForm" (ngSubmit)="SendForm(contactForm)">
                     <div class="container d-inline-flex flex-row justify-content-center align-items-center">
                         <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
                             <input class="w-inherit" type="text" name="contact-Name" [(ngModel)]="ContactFormData.Name" placeholder="Ingrese su nombre" required>

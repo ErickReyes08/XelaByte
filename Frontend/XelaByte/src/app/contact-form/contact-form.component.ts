@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { MessagesService } from '../messages-container/messages.service';
 
 @Component({
   selector: 'ContactForm',
@@ -20,17 +22,17 @@ export class ContactFormComponent implements OnInit
   } = { Name: "", Email: "", Affair: "", Message: "" };
   //--------------------
 
-  constructor() { }
+  constructor(private MessageService: MessagesService) { }
 
   ngOnInit(): void
   {
   }
 
-  SendForm(): void
+  SendForm(form: NgForm): void
   {
     let formInputsText: [HTMLInputElement, HTMLElement | undefined][] | undefined = [];
     let formButton: HTMLButtonElement | undefined;
-    let formInfo: { Data: any, URL: string } | undefined;
+    let formInfo: { Data: any, FormFrom: string, URL: string } | undefined;
     
     //ESTABLECIENDO TODOS LOS ELEMENTOS DEL FORMULARIO
     let formElement = document.getElementById("contactForm")!;
@@ -48,14 +50,27 @@ export class ContactFormComponent implements OnInit
     //SI HAY CAMPOS INVÁLIDOS SE AÑADE EL BOTÓN A LA LISTA Y SE MANDAN LOS CAMPOS AL PADRE
     if(formInputsText.length >= 1)
     {
+      this.MessageService.SendMessage("Error al enviar el formulario", "Debe ingresar o corregir todos los campos del formulario antes de enviarlo. Verifique los espacios marcados en color rojo", 6000);
       formButton = formElement.getElementsByClassName("footer").item(0)?.children.item(0)?.children.item(0) as HTMLButtonElement;
       this.FormDataEmmiter.emit({formInputsText, formButton, undefined});
     }
     else //SE ENVIAN LOS DATOS AL PADRE PARA QUE SE SUBAN AL BACKEND
     {
-      formInfo = { Data: this.ContactFormData, URL: "contactFormURL-Backend" }
+      //SE CIERRA Y RESETEA EL FORMULARIO
+      this.ResetFormValues(form);
+      //SE ENVÍAN LOS DATOS
+      this.MessageService.SendMessage("Enviando formulario...", "El formulario se está enviando, por favor espere", 4000);
+      formInfo = { Data: this.ContactFormData, FormFrom: "ContactForm", URL: "contactFormURL-Backend" }
       this.FormDataEmmiter.emit({formInputsText, formButton, formInfo});
     }
+  }
+
+  ResetFormValues(form: NgForm)
+  {
+    let contactForm = document.getElementById("ContactForm");
+    let closeButton = contactForm!.getElementsByClassName("Modal-exit")[0] as HTMLElement;
+    closeButton.click();
+    setTimeout(() => { form.resetForm(); }, 152);
   }
 
 }

@@ -1,4 +1,4 @@
-<div name="Form" id="ContactForm" class="Modal" tabindex="-1" aria-hidden="true">
+<div name="Form" id="MakeAppointmentForm" class="Modal" tabindex="-1" aria-hidden="true">
     <div class="Modal-dialog Modal-dialog-centered">
         <div class="Modal-content border-0">
             <a role="button" name="FormCloseButton" class="Modal-exit"><i class="bi bi-x-lg"></i></a>
@@ -6,7 +6,7 @@
                 <p class="Montserrat-Bold">Agendar una cita</p>
             </div>
             <div class="modal-body border-0 body Montserrat-Regular">
-                <form id="makeAppointmentForm" #makeAppointmentForm="ngForm" (ngSubmit)="SendForm()">
+                <form id="makeAppointmentForm" #makeAppointmentForm="ngForm" (ngSubmit)="SendForm(makeAppointmentForm)">
                     <div class="container d-inline-flex flex-row justify-content-center align-items-center">
                         <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
                             <input class="w-inherit" type="email" name="makeAppointment-Name" [(ngModel)]="MakeAppointmentFormData.Name" placeholder="Ingrese su nombre completo" required>

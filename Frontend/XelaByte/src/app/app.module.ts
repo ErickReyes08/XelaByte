@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+//DIRECTIVAS
+import { DragNDropDirective } from './drag-ndrop.directive';
 //COMPONENTES
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -15,8 +17,8 @@ import { TalentFormComponent } from './talent-form/talent-form.component'; impor
 import { RequestServicesFormComponent } from './request-services-form/request-services-form.component';
 import { MakeAppointmentFormComponent } from './make-appointment-form/make-appointment-form.component';
 import { HomeFooterComponent } from './home-footer/home-footer.component';
-//DIRECTIVAS
-import { DragNDropDirective } from './drag-ndrop.directive';
+import { MessagesContainerComponent } from './messages-container/messages-container.component';
+import { MessageComponent } from './messages-container/message.component';
 
 @NgModule({
   declarations: [
@@ -30,12 +32,14 @@ import { DragNDropDirective } from './drag-ndrop.directive';
     RequestServicesFormComponent,
     MakeAppointmentFormComponent,
     HomeFooterComponent,
+    MessagesContainerComponent,
+    MessageComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CommonModule,
     FormsModule
   ],
   providers: [],

@@ -1,4 +1,6 @@
 import { Component, OnInit, AfterContentInit, Output, EventEmitter } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { MessagesService } from '../messages-container/messages.service';
 import { RequestServicesService } from './request-services.service';
 
 @Component({
@@ -20,7 +22,7 @@ export class RequestServicesFormComponent implements OnInit, AfterContentInit
   } = { Name: "", Telephone: "", Email: "", Services: [], OtherService: "" }
   //--------------------
 
-  constructor(public RequestServices: RequestServicesService) { }
+  constructor(public RequestServices: RequestServicesService, private MessageService: MessagesService) { }
 
   ngOnInit(): void 
   {
@@ -55,11 +57,11 @@ export class RequestServicesFormComponent implements OnInit, AfterContentInit
     this.RequestServices.CanSetServices = true;
   }
 
-  SendForm(): void
+  SendForm(form: NgForm): void
   {
     let formInputsText: [HTMLInputElement, HTMLElement | undefined][] | undefined = [];
     let formButton: HTMLButtonElement | undefined;
-    let formInfo: { Data: any, URL: string } | undefined;
+    let formInfo: { Data: any, FormFrom: string, URL: string } | undefined;
     
     //ESTABLECIENDO TODOS LOS ELEMENTOS DEL FORMULARIO
     let formElement = document.getElementById("requestServicesForm")!;
@@ -89,22 +91,37 @@ export class RequestServicesFormComponent implements OnInit, AfterContentInit
         ValidatedServices!.push([ServicesCheckBoxes[x], ServicesNames[x]]);
       }
     }
-    if(AllUnChecked) { formInputsText.push([OtherServiceOption, formElement.getElementsByClassName("input-c")[3].children.item(1) as HTMLElement]); }
+    //EN CASO DE QUE TODOS LOS SERVICIOS ESTÉN SIN CHEQUEAR
+    if(AllUnChecked) 
+    { 
+      this.MessageService.SendMessage("Solicitud erronea", "Debe seleccionar al menos una casilla en el apartado de servicios para poder hacer la solicitud. ¿Desea solicitar un serivicio fuera de la lista?", undefined, { YesButton: ()=>{ OtherServiceOption.click(); }, NoButton: ()=>{} });
+      formInputsText.push([OtherServiceOption, formElement.getElementsByClassName("input-c")[3].children.item(1) as HTMLElement]);
+    }
     for(let [VServiceInput, VServiceName] of ValidatedServices){ this.RequestServicesFormData.Services.push(VServiceName.textContent!); }
     //------------------------------------------------
 
     //SI HAY CAMPOS INVÁLIDOS SE AÑADE EL BOTÓN A LA LISTA Y SE MANDAN LOS CAMPOS AL PADRE
     if(formInputsText.length >= 1)
     {
+      this.MessageService.SendMessage("Error al enviar el formulario", "Debe ingresar o corregir todos los campos del formulario antes de enviarlo. Verifique los espacios marcados en color rojo", 6000);
       formButton = formElement.getElementsByClassName("footer").item(0)?.children.item(0)?.children.item(0) as HTMLButtonElement;
       this.FormDataEmmiter.emit({formInputsText, formButton, undefined});
     }
     else //SE ENVIAN LOS DATOS AL PADRE PARA QUE SE SUBAN AL BACKEND
     {
-      console.log(this.RequestServicesFormData);
-      formInfo = { Data: this.RequestServicesFormData, URL: "requestServicesFormURL-Backend" }
+      this.ResetFormValues(form);
+      //console.log(this.RequestServicesFormData);
+      this.MessageService.SendMessage("Enviando formulario...", "El formulario se está enviando, por favor espere", 4000);
+      formInfo = { Data: this.RequestServicesFormData, FormFrom: "RequestService", URL: "requestServicesFormURL-Backend" }
       this.FormDataEmmiter.emit({formInputsText, formButton, formInfo});
     }
   }
 
+  ResetFormValues(form: NgForm)
+  {
+    let contactForm = document.getElementById("ServiceForm");
+    let closeButton = contactForm!.getElementsByClassName("Modal-exit")[0] as HTMLElement;
+    closeButton.click();
+    setTimeout(() => { form.resetForm(); }, 152);
+  }
 }
