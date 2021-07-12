@@ -1,0 +1,44 @@
+<footer class="container-fluid text-center d-inline-flex flex-column FooterBlackStyle">
+    <div class="container d-inline-flex flex-row FooterDivs">
+        <div class="d-inline-flex flex-column align-items-start col">
+            <p class="Montserrat-Bold FooterTitle">Ubicación de las oficinas</p>
+            <ul class="ListStyle-none d-inline-flex flex-column align-items-start FooterList">
+                <li *ngFor="let office of Resolver.FooterInfo.OfficeLocations"><p class="Montserrat-SemiBold"><i class="bi bi-house-fill mx-2"></i><small class="Montserrat-Regular">{{office}}</small></p></li>
+            </ul>            
+        </div>
+        <div class="d-inline-flex flex-column align-items-start col">
+            <p class="Montserrat-Bold FooterTitle">Teléfonos de contacto</p>
+            <ul class="ListStyle-none d-inline-flex flex-column align-items-start FooterList">
+                <li *ngFor="let tel of Resolver.FooterInfo.TelephoneContacts"><p class="Montserrat-SemiBold"><i class="bi bi-telephone-fill mx-2"></i><small class="Montserrat-Regular">{{tel}}</small></p></li>
+            </ul>
+        </div>
+        <div class="d-inline-flex flex-column align-items-start col">
+            <p class="Montserrat-Bold FooterTitle">Email de contacto</p>
+            <ul class="ListStyle-none d-inline-flex flex-column align-items-start FooterList">
+                <li *ngFor="let email of Resolver.FooterInfo.ContactsEmails"><p class="Montserrat-SemiBold"><i class="bi bi-envelope-fill mx-2"></i><a href="mailto:{{email}}" class="Montserrat-Regular">{{email}}</a></p></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid d-inline-flex flex-row align-items-center justify-content-center HomeLowerInf">
+        <a role="button" href="" class="Montserrat-SemiBold mx-3">Términos y condiciones</a>
+        <a role="button" href="" class="Montserrat-SemiBold mx-3">Políticas de privacidad</a>
+    </div>
+
+    <div class="container-fluid d-inline-flex flex-row align-items-center justify-content-center HomeFooterFooter">
+        <div class="container d-inline-flex flex-column justify-content-center align-items-center">
+            <p class="Montserrat-Bold my-0 mx-2 FooterCreditsText w-inherit">© 2021 XelaByte</p>
+        </div>
+        <div class="container d-inline-flex justify-content-center align-items-center IFrameTechFooter">
+            <p class="Montserrat-Bold my-0 mx-2 FooterCreditsText w-inherit">© 2021 IFrame Tech</p>
+            <div class="container d-inline-flex flex-row justify-content-center align-items-center SocialNets">
+                <a role="button" class="mx-3"><i class="bi bi-globe2"></i></a>
+                <a role="button" class="mx-3"><i class="bi bi-instagram"></i></a>
+                <a role="button" class="mx-3"><i class="bi bi-facebook"></i></a>
+                <a role="button" class="mx-3"><i class="bi bi-twitter"></i></a>
+                <a role="button" class="mx-3"><i class="bi bi-whatsapp"></i></a>
+                <a role="button" class="mx-3"><i class="bi bi-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>

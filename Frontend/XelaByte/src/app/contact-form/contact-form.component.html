@@ -1,0 +1,41 @@
+<div name="Form" id="ContactForm" class="Modal" tabindex="-1" aria-hidden="true">
+    <div class="Modal-dialog Modal-dialog-centered">
+        <div class="Modal-content border-0">
+            <a role="button" name="FormCloseButton" class="Modal-exit"><i class="bi bi-x-lg"></i></a>
+            <div class="modal-header border-0 header justify-content-center text-center">
+                <p class="Montserrat-Bold">Contacto</p> 
+            </div>
+            <div class="modal-body border-0 body Montserrat-Regular">
+                <form id="contactForm" #contactForm="ngForm" (ngSubmit)="SendForm(contactForm)">
+                    <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <input class="w-inherit" type="text" name="contact-Name" [(ngModel)]="ContactFormData.Name" placeholder="Ingrese su nombre" required>
+                            <small class="Montserrat-Bold"><i class="bi bi-person-badge-fill h5"></i>Nombre *</small>
+                        </div>
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <input class="w-inherit" type="email" name="contact-Email" [(ngModel)]="ContactFormData.Email" placeholder="Ingrese su Email" required>
+                            <small class="Montserrat-Bold"><i class="bi bi-envelope-fill h5"></i>Email *</small>
+                        </div>
+                    </div>
+                    <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <input class="w-inherit" type="text" name="contact-Affair" [(ngModel)]="ContactFormData.Affair" placeholder="Asunto" required>
+                            <small class="Montserrat-Bold"><i class="bi bi-pencil-square h5"></i>Asunto *</small>
+                        </div>
+                    </div>
+                    <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <textarea class="Montserrat-Regular" name="contact-Message" [(ngModel)]="ContactFormData.Message" placeholder="Mensaje" required maxlength="1000" [required]="true"></textarea>
+                            <small class="Montserrat-Bold"><i class="bi bi-chat-square-dots-fill h5"></i>Mensaje *</small>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 footer">
+                        <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                            <button type="submit" class="DarkButton Montserrat-SemiBold">Enviar <i class="bi bi-forward-fill"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

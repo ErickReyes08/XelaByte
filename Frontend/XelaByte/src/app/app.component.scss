@@ -1,4 +1,7 @@
 @import "../assets/Sass/Colors";
+@import "../assets/Sass/Modal";
+
+.w-inherit { width: inherit; }
 
 .ListStyle-none { list-style: none; padding: 0; }
 
@@ -19,7 +22,7 @@
     color: white;
     padding: 4rem;
     border-radius: 15px;
-    z-index: 0;
+    //z-index: 0;
 }
 
 .responsive-iframe
@@ -55,50 +58,9 @@
     {
         transition: all ease-in-out 100ms;
         color: $Gray;
-        transform: scale(1.05, 1.05);
+        transform: scale(1.05);
     }
     &:active { color: $DarkGray; }
-}
 
-.FooterBlackStyle
-{
-    background: $CardBlackBackground;
-    box-shadow: $CardsShadow;
-    color: white;
-    padding: 4rem 2rem 0rem 2rem;
-    margin-left: 0; margin-right: 0;
-    //border-radius: 15px;
-    z-index: 0;
-    .FooterTitle { font-size: 1.25rem; }
-    .FooterDivs
-    {
-        div { padding: 0rem 2rem; }
-        @media only screen and (max-width: 450px)
-        {
-            flex-direction: column !important;
-            div { margin: 1rem 0rem; }
-        }
-    }
-    .FooterList
-    {
-        p { font-size: 1rem; }
-    }
-
-    a
-    {
-        color: white;
-        text-decoration: none;
-        &:hover { color: $Gray; }
-    }
-
-    hr
-    {
-        border-radius: 50%;
-        height: 0.25rem;
-        margin: 1.5rem 2rem;
-        background-color: white;
-        opacity: 0.6;
-    }
-
-    .FooterCreditsText { font-size: 1rem; margin-bottom: 2rem; }
+    i { margin-left: 0.75rem; }
 }

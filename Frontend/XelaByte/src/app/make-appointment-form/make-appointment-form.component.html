@@ -1,0 +1,45 @@
+<div name="Form" id="MakeAppointmentForm" class="Modal" tabindex="-1" aria-hidden="true">
+    <div class="Modal-dialog Modal-dialog-centered">
+        <div class="Modal-content border-0">
+            <a role="button" name="FormCloseButton" class="Modal-exit"><i class="bi bi-x-lg"></i></a>
+            <div class="modal-header border-0 header justify-content-center text-center">
+                <p class="Montserrat-Bold">Agendar una cita</p>
+            </div>
+            <div class="modal-body border-0 body Montserrat-Regular">
+                <form id="makeAppointmentForm" #makeAppointmentForm="ngForm" (ngSubmit)="SendForm(makeAppointmentForm)">
+                    <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <input class="w-inherit" type="email" name="makeAppointment-Name" [(ngModel)]="MakeAppointmentFormData.Name" placeholder="Ingrese su nombre completo" required>
+                            <small class="Montserrat-Bold"><i class="bi bi-person-badge-fill h5"></i>Nombre completo *</small>
+                        </div>
+                    </div>
+                    <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <input class="w-inherit" type="text" name="makeAppointment-Telephone" [(ngModel)]="MakeAppointmentFormData.Telephone" placeholder="Teléfono 1234-5678" pattern="[0-9]{4}-[0-9]{4}" required>
+                            <small class="Montserrat-Bold"><i class="bi bi-telephone-fill h5"></i>Teléfono *</small>
+                        </div>
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <input class="w-inherit" type="email" name="makeAppointment-Email" [(ngModel)]="MakeAppointmentFormData.Email" placeholder="Ingrese su Email" required>
+                            <small class="Montserrat-Bold"><i class="bi bi-envelope-fill h5"></i>Email *</small>
+                        </div>
+                    </div>
+                    <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <input (ngModelChange)="DateChanged($event)" id="AppointmentDate" class="w-inherit" type="date" name="makeAppointment-Date" [(ngModel)]="MakeAppointmentFormData.Date" required>
+                            <small class="Montserrat-Bold"><i class="bi bi-calendar-plus-fill h5"></i>Fecha *</small>
+                        </div>
+                        <div class="container input-c m-3 d-inline-flex justify-content-left align-items-start">
+                            <input (ngModelChange)="HourChanged($event)" class="w-inherit" type="time" name="makeAppointment-Hour" [(ngModel)]="MakeAppointmentFormData.Hour" min="06:00" max="18:00" required>
+                            <small class="Montserrat-Bold"><i class="bi bi-clock-fill h5"></i>Hora *<small>(de 6AM a 18PM)</small></small>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 footer">
+                        <div class="container d-inline-flex flex-row justify-content-center align-items-center">
+                            <button type="submit" class="DarkButton Montserrat-SemiBold">Enviar <i class="bi bi-forward-fill"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
