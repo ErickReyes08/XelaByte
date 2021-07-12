@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { forkJoin } from 'rxjs';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { HomeResolverService } from '../home-resolver.service';
 import { RequestServicesService } from '../request-services-form/request-services.service';
@@ -12,26 +11,8 @@ import { MessagesService } from '../messages-container/messages.service';
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent implements OnInit
+export class HomeComponent implements OnInit, AfterViewInit
 {
-  //LINK DEL VIDEO DE LA PÁGINA
-  HomeVideoLink: SafeResourceUrl = "";
-  //DATOS DEL APARTADO DE NUESTRO EQUIPO
-  public TeamData: { MemberName: string, MembersPosition: string, MemberImageURL: string }[] = 
-  [
-    {
-      MemberName: "Samuel Rabi Romero",
-      MembersPosition: "Depto. Administración",
-      MemberImageURL: "../../assets/Img/2.jpg"
-    },
-    {
-      MemberName: "Erick Alfonso Reyes",
-      MembersPosition: "Depto. Soporte Técnico",
-      MemberImageURL: "../../assets/Img/2.jpg"
-    }
-  ];
-  //------------------------------------
-
   private FormsPairs = function()
   {
     let FormButtons = Array.from(document.getElementsByName("FormButton"));
@@ -50,42 +31,30 @@ export class HomeComponent implements OnInit
 
     return res;
   }
+  //PROPIEDADES GET PARA ENCAPSULAR LA INFORMACIÓN DEL "HomeResolver"
+  public get TeamData(): any { return this.HomeResolver.TeamData; }
+  public get HomeVideoLink(): any { return this.HomeResolver.HomeVideoLink; }
 
   constructor(
     private activatedRoute: ActivatedRoute, 
-    private Resolver: HomeResolverService, 
+    private HomeResolver: HomeResolverService, 
     private RequestService: RequestServicesService, 
     private sanitizer: DomSanitizer,
     private MessageService: MessagesService) { }
-
+  
   ngOnInit(): void
   {
     this.SetFormAnimations();
-    this.activatedRoute.data.subscribe((response)=>
-    {
-      //forkJoin PARA DETECTAR CUANDO LOS OBSERVABLES TERMINARON DE ADQUIRIR LOS DATOS DEL SERVIDOR
-      forkJoin([response.HomeData.get("TeamData"), response.HomeData.get("ServicesData"), response.HomeData.get("FooterData"), response.HomeData.get("HomeVideoLink")]).subscribe((data: any) =>
-      {
-        //console.log(data);
-        //ADQUIRIENDO LOS DATOS DE LA REQUEST DE "TeamData"
-        if(typeof(data[0]) === "object"){ /*this.TeamData = data[0];*/ console.log(data[0][0]); }
-
-        //ADQUIRIENDO LOS DATOS DE LA REQUEST DE "ServicesData"
-        if(typeof(data[1]) === "object"){ /*this.RequestService.ServicesCards = data[1];*/ console.log(data[1][0]); }
-
-        //ADQUIRIENDO LOS DATOS DE LA REQUEST DE "FooterData"
-        if(typeof(data[2]) === "object"){ /*this.Resolver.FooterInfo = data[2];*/ console.log(data[2][0]); }
-
-        //this.RequestServices.ServicesCards = [];
-        //this.TeamData = [];
-        //this.Resolver.FooterInfo = { OfficeLocations: [], TelephoneContacts: [], ContactsEmails: [] };
-        //LUEGO DE OBTENER Y ESTABLECER LOS DATOS DE LOS SERVICIOS SE CONFIGURA LA ANIMACIÓN DEL FORMULARIO DE SERVICIOS
-        this.SetServicesFormAnimation();
-        let HomeVideoURL = "https://www.youtube.com/embed/JIZLzhUFLvY";
-        this.HomeVideoLink = this.sanitizer.bypassSecurityTrustResourceUrl(HomeVideoURL);
-      });
+    this.activatedRoute.data.subscribe( response => {
+      //ESTABLECIENDO LOS DATOS UNA VEZ CARGADO CORRECTAMENTE EL RESOLVER
+      let HomeVideoURL = "https://www.youtube.com/embed/JIZLzhUFLvY";
+      //--------CÓDIGO FINAL CUANDO SE RECIBNA LOS DATOS DEL BACKEND------------this.HomeResolver.HomeVideoLink = this.sanitizer.bypassSecurityTrustResourceUrl(response.HomeData.get("HomeVideoLink"));
+      this.HomeResolver.HomeVideoLink = this.sanitizer.bypassSecurityTrustResourceUrl(HomeVideoURL);
+      console.log(response.HomeData);
     });
   }
+  //ESTABLECIENDO LA ANIMACIÓN DEL FORMULARIO DE LOS SERVICIOS DESPUÉS DE QUE SE GENEREN LOS ELMENTOS
+  ngAfterViewInit(){ this.SetServicesFormAnimation(); }
 
   RecieveFormsData($event: any): void
   {
@@ -96,6 +65,7 @@ export class HomeComponent implements OnInit
     //SI NO HAY DATOS, SIGNIFICA QUE HUBO UN ERROR POR LO QUE SE LE MOSTRARÁ AL USUARIO GRÁFICAMENTE SOBRE EL ERROR
     if(FormInfo === undefined)
     {
+      this.MessageService.SendMessage("Error al enviar el formulario", "Debe ingresar o corregir todos los campos del formulario antes de enviarlo. Verifique los espacios marcados en color rojo", 6000);
       for(let [input, small] of FormInputsText!)
       {
         input.classList.replace("ng-pristine", "ng-dirty");
@@ -108,6 +78,7 @@ export class HomeComponent implements OnInit
     }
     else
     {
+      this.MessageService.SendMessage("Enviando formulario...", "El formulario se está enviando, por favor espere", 4000);
       //RELIZAR EL MÉTODO POST DE LA INFORMACIÓN DEL FORMULARIO
       setTimeout(() => {
         switch(FormInfo?.FormFrom)
@@ -126,6 +97,7 @@ export class HomeComponent implements OnInit
     let ServiceFormButtons = Array.from(document.getElementsByName("ServiceFormButton"));
     let ServiceFormCloseButton = document.getElementsByName("ServiceFormCloseButton")[0] as HTMLElement;
     let ServiceForm = document.getElementsByName("ServiceForm")[0] as HTMLElement;
+    console.log(ServiceFormButtons, ServiceFormCloseButton, ServiceForm);
     //ABRIENDO EL FORMULARIO
     for(let ServiceFormButton of ServiceFormButtons)
     {

@@ -19,10 +19,17 @@ export class MessagesService
   SendMessage(Title: string, Message: string, TimeOutms?: number, Options?: any)
   {
     //VERIFICANDO SI EL ÚLTIMO MENSAJE SE MOSTRÓ CORRECTAMENTE
-    if(this.MessagesReferences.length >= 1)
+    let repeatedMesage = this.MessagesReferences.find(x => x.instance.Title === Title && x.instance.Message === Message)?.instance;
+    if(this.MessagesReferences.length >= 1 && repeatedMesage)
     {
-      let lastMessage = this.MessagesReferences.slice(-1)[0].instance;
-      if(lastMessage.Title === Title && lastMessage.Message === Message){ lastMessage.Count++; return; } 
+      //this.MessagesReferences.find();
+      //let lastMesage = this.MessagesReferences.slice(-1)[0].instance;
+      if(repeatedMesage.TimeOutms != -1) 
+      { 
+        clearTimeout(repeatedMesage.TimeOutVar!);
+        repeatedMesage.CloseAsync();
+      }
+      if(repeatedMesage.Title === Title && repeatedMesage.Message === Message){ repeatedMesage.Count++; return; } 
     }
 
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(MessageComponent);
@@ -44,11 +51,7 @@ export class MessagesService
     {
       messageComponent.TimeOutms = TimeOutms;
       //EJECUTAR LA ANIMACIÓN DE ELIMINACIÓN Y AL TÉRMINO ELMINAR EL COMPONENTE
-      setTimeout(() => 
-      {
-        messageContainer.slice(-1)[0].children[0].classList.replace("show-message", "hide-message");
-        setTimeout(() => { this.RemoveMessage(messageComponent.ID); }, 150);
-      }, TimeOutms);
+      messageComponent.CloseAsync();
     }
 
     //AÑADIENDO A LA LISTA DE MENSAJES

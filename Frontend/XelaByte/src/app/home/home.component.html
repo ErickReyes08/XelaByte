@@ -28,10 +28,9 @@
 
     <div class="container text-center my-5 d-inline-flex flex-column CardBlackStyle">
         <p class="Montserrat-Bold text-light text-center mt-0 mb-0 h2">Nuestro equipo</p>
-
         <!--Componente de equipo-->
         <ul class="EquipList Montserrat-SemiBold flex">
-            <li class="d-inline-flex flex-row align-itmes-center mx-5" *ngFor="let Member of TeamData">
+            <li class="d-inline-flex flex-row align-itmes-center mx-5" *ngFor="let Member of this.TeamData">
                 <img src="{{Member.MemberImageURL}}">
                 <div class="container TextCard">
                     <div class="container">
@@ -42,7 +41,6 @@
             </li>
         </ul>
         <!------------------------>
-
         <p class="Montserrat-Regular text-light text-center h5 mt-5">Somos un grupo de expertos en <b class="Montserrat-Bold text-light">Matenimiento preventivo y Correctivo</b> de equipos de computación</p>
     </div>
 
@@ -93,7 +91,6 @@
 <!--Footer como componente para recibimiento de datos por parte del backend-->
 <HomeFooter></HomeFooter>
 <!--------------------------------------------------------------------------->
-
 <!--COMPONENTE CONTENEDOR DE MENSAJES PARA EL USUARIO-->
 <MessagesContainer></MessagesContainer>
 <!----------------------------------------------------->

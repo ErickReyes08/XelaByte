@@ -22,7 +22,7 @@ export class MakeAppointmentFormComponent implements OnInit
   } = { Name: "", Telephone: "", Email: "", Date: "", Hour: "" };
   //--------------------
   
-  constructor(private MessageService: MessagesService) { }
+  constructor() { }
 
   ngOnInit(): void 
   {
@@ -60,14 +60,12 @@ export class MakeAppointmentFormComponent implements OnInit
     //SI HAY CAMPOS INVÁLIDOS SE AÑADE EL BOTÓN A LA LISTA Y SE MANDAN LOS CAMPOS AL PADRE
     if(formInputsText.length >= 1)
     {
-      this.MessageService.SendMessage("Error al enviar el formulario", "Debe ingresar o corregir todos los campos del formulario antes de enviarlo. Verifique los espacios marcados en color rojo", 6000);
       formButton = formElement.getElementsByClassName("footer").item(0)?.children.item(0)?.children.item(0) as HTMLButtonElement;
       this.FormDataEmmiter.emit({formInputsText, formButton, undefined});
     }
     else //SE ENVIAN LOS DATOS AL PADRE PARA QUE SE SUBAN AL BACKEND
     {
       this.ResetFormValues(form);
-      this.MessageService.SendMessage("Enviando formulario...", "El formulario se está enviando, por favor espere", 4000);
       formInfo = { Data: this.MakeAppointmentFormData, FormFrom: "MakeAppointment", URL: "makeAppointmentFormURL-Backend" }
       this.FormDataEmmiter.emit({formInputsText, formButton, formInfo});
     }
