@@ -6,8 +6,8 @@
             <p class="mt-3 px-3 Montserrat-Regular h5 ParagraphColor">Te ofrecemos servicios de mantenimiento, reparación y actualización de computadoras. Te brindamos un trabajo garantizado y profesional con precios accesibles. </p>
         </div>
         <div class="mt-5 mx-auto d-inline-flex text-center Montserrat-SemiBold">
-            <a data-tooltip="(Nuestros servicios)" role="button" (click)="goToServices()" class="CircleInf d-flex align-items-center"><span>Nuestros servicios</span><i class="bi bi-tools mr-0"></i></a>
-            <a name="FormButton" data-tooltip="(¡Contáctanos!)" type="button" role="button" class="CircleInf d-flex align-items-center"><span>¡Contáctanos!</span><i class="bi bi-person-circle mr-0"></i></a>
+            <a data-tooltip="(Nuestros servicios)" role="button" href="#Services" class="CircleInf d-flex align-items-center"><span>Nuestros servicios</span><i class="bi bi-tools mr-0"></i></a>
+            <a name="ContactFormButton" data-tooltip="(¡Contáctanos!)" type="button" role="button" class="CircleInf d-flex align-items-center"><span>¡Contáctanos!</span><i class="bi bi-people-fill mr-0"></i></a>
             <ContactForm (FormDataEmmiter)="RecieveFormsData($event)"></ContactForm>
         </div>
 
@@ -51,7 +51,7 @@
                 <p class="Montserrat-Regular my-0 h4">Somos un equipo multidisciplinario que está en constante crecimiento</p>
             </div>
             <div class="container d-inline-flex flex-column justify-content-center align-items-center col-3 my-3">
-                <a name="FormButton" class="Montserrat-SemiBold DarkButton" role="button">
+                <a name="TalentFormButton" class="Montserrat-SemiBold DarkButton" role="button">
                     Aplicar ahora
                     <i class="bi bi-caret-right-fill"></i>
                 </a>
@@ -60,7 +60,7 @@
         </div>
     </div>
 
-    <div class="container text-center my-5 d-inline-flex flex-column CardBlackStyle">
+    <div id="Services" class="container text-center my-5 d-inline-flex flex-column CardBlackStyle">
         <ServiceCard></ServiceCard>
         <RequestServicesForm (FormDataEmmiter)="RecieveFormsData($event)"></RequestServicesForm>
     </div>
@@ -69,7 +69,7 @@
         <div class="d-inline-flex flex-column text-center align-items-center">
             <p class="Montserrat-Bold my-3 SpiceUpTitle">¡Es momento de darle vida a tu compu!</p>
             <p class="Montserrat-Regular SpiceUpSubTitle">no pierdas la oportunidad de mejorar el rendimiento de tu equipo</p>
-            <a name="FormButton" class="Montserrat-SemiBold DarkButton" role="button">Agendar cita<i class="bi bi-journal-bookmark-fill"></i></a>
+            <a name="MakeAppointmentFormButton" class="Montserrat-SemiBold DarkButton" role="button">Agendar cita<i class="bi bi-journal-bookmark-fill"></i></a>
             <MakeAppointmentForm (FormDataEmmiter)="RecieveFormsData($event)"></MakeAppointmentForm>
         </div>
     </div>

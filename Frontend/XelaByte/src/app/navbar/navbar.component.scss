@@ -4,13 +4,44 @@ nav
 {
     background: $CardBackground;
     box-shadow: $NavShadow;
-    border-radius: 0.625rem;
-    div
+    .container-fluid { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    
+    ul
     {
-        display: flex;
-        justify-content: center;
-        text-align: center;
+        margin-left: auto;
+        a 
+        {
+            margin: 0 .5rem;
+            color: $LightBlack;
+            padding: 0.625rem 1rem;
+            text-decoration: none;
+            font-size: 1.05rem;
+            border-radius: 15px;
+            transform: scale(1);
+            transition: all ease-in-out 100ms;
+            &:hover
+            {
+                background-color: $NavBarHoverLinkBlack;
+                box-shadow: $CardsShadow;
+                color: white;
+                transform: scale(1.1);
+                transition: all ease 90ms;
+            }
+            i { margin-right: 1rem; }
+        }
+    }
+
+    img { width: 15rem; }
+
+    [aria-expanded="true"] ~ div
+    {
+        a
+        { 
+            background-color: $NavBarHoverLinkBlack;
+            box-shadow: $CardsShadow;
+            color: white;
+            margin: 1rem .5rem; 
+        }
     }
     
-    img { width: 12rem; }
 }
