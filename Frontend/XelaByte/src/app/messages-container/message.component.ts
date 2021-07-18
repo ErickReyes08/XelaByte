@@ -4,13 +4,19 @@ import { MessagesService } from './messages.service';
 @Component({
   selector: 'Message',
   template: `
-    <div id="MSGid__{{ID}}" class="Message d-inline-flex flex-column justify-content-center align-items-center">
+    <div id="{{ID}}" class="Message d-inline-flex flex-column justify-content-center align-items-center">
         <div class="Message-header d-inline-flex flex-row justify-content-center align-items-center">
             <!--i class="Montserrat-SemiBold Message-counter d-flex flex-column justify-content-center align-items-center">{{Count}}</i-->
             <ng-template [ngIf]="Count >= 2">
                 <i class="Montserrat-SemiBold Message-counter d-flex flex-column justify-content-center align-items-center">
                     {{Count >= 10 ? "+9" : Count}}
                 </i>
+            </ng-template>
+            <ng-template [ngIf]="Options!">
+                <div [ngSwitch]="Options.MessageType">
+                    <i *ngSwitchCase="0" class="WarningIcon d-flex flex-column justify-content-center align-items-center bi bi-exclamation-triangle-fill"></i>
+                    <i *ngSwitchCase="1" class="ErrorIcon d-flex flex-column justify-content-center align-items-center bi bi-x-octagon-fill"></i>
+                </div>
             </ng-template>
             <p class="Montserrat-Bold my-2">{{Title}}</p>
             <a role="button" class="Message-exit d-flex flex-column justify-content-center align-items-center" (click)="CloseManually()"><i class="bi bi-x-lg"></i></a>
@@ -41,16 +47,17 @@ import { MessagesService } from './messages.service';
 
 export class MessageComponent implements OnInit
 {
-    ID: number = -1;
+    ID: string = "";
     Count: number = 0;
     public Title: string = "";
     public Message: string = "";
     public TimeOutms: number = -1;
     public Options:
     {
-        AcceptButton?: () => void
+        AcceptButton?: () => void,
         YesButton?: () => void,
-        NoButton?: () => void
+        NoButton?: () => void,
+        MessageType?: number
     } = {};
     public ShowSuccesfully: boolean = false;
 
@@ -67,11 +74,10 @@ export class MessageComponent implements OnInit
 
     CloseManually(): void
     {
+        //ELIMINAMOS EL TIMEOUT COMO SOLUCIÓN DE BUG
+        clearTimeout(this.TimeOutVar!);
         let messages = Array.from(document.getElementsByClassName("Message")) as HTMLElement[];
-        messages.forEach((x) =>
-        {
-            if(x.id == "MSGid__"+this.ID){ x.classList.replace("show-message", "hide-message"); }
-        });
+        messages.find(x => x.id == this.ID)?.classList.replace("show-message", "hide-message");
         setTimeout(() => { this.messageService.RemoveMessage(this.ID); }, 150);
     }
 }

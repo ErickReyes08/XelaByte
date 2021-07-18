@@ -1,6 +1,7 @@
 import { ReturnStatement } from '@angular/compiler';
 import { Injectable, Component, ComponentFactoryResolver, ViewChild, ElementRef, ViewContainerRef, EventEmitter, ComponentRef } from '@angular/core';
 import { MessageComponent } from './message.component';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,6 @@ import { MessageComponent } from './message.component';
 
 export class MessagesService 
 {
-  ID_Counter: number = 0;
   MessageContainer!: ViewContainerRef;
   private MessagesReferences = Array<ComponentRef<MessageComponent>>();
   
@@ -29,7 +29,8 @@ export class MessagesService
         clearTimeout(repeatedMesage.TimeOutVar!);
         repeatedMesage.CloseAsync();
       }
-      if(repeatedMesage.Title === Title && repeatedMesage.Message === Message){ repeatedMesage.Count++; return; } 
+      repeatedMesage.Count++; 
+      return;
     }
 
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(MessageComponent);
@@ -38,7 +39,9 @@ export class MessagesService
     let messageComponent = messageComponentRef.instance;
     let messageContainer = Array.from(document.getElementsByClassName("Messages-content")[0].children) as HTMLElement[];
 
-    messageComponent.ID = ++this.ID_Counter;
+    //SE GENERA UNA ID ÚNICA PARA CADA MENSAJE NUEVO
+    messageComponent.ID = uuidv4();
+    //SE ESTABLECEN LOS DEMAS DATOS DEL MENSAJE
     messageComponent.Title = Title;
     messageComponent.Message = Message;
     messageComponent.Count++;
@@ -58,7 +61,7 @@ export class MessagesService
     this.MessagesReferences.push(messageComponentRef);
   }
 
-  RemoveMessage(ID: number)
+  RemoveMessage(ID: string)
   {
     if(this.MessageContainer.length == 0) return;
 
@@ -70,7 +73,6 @@ export class MessagesService
     this.MessageContainer.remove(messageContainerIndex);
     //ELIMINANDO DE LA LISTA DE MENSAJES
     this.MessagesReferences = this.MessagesReferences.filter(x => x.instance.ID !== ID);
-    this.ID_Counter--;
   }
 
 }

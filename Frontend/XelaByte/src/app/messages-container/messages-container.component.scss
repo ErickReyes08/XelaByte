@@ -161,6 +161,9 @@ body.ModalActive
                 transition: all ease-in-out 150ms;
                 &:hover { transition: all ease-in-out 100ms; color: $Gray; transform: scale(1.1); }
             }
+            .WarningIcon, .ErrorIcon { margin-right: 12px; }
+            .WarningIcon { color: $WarningColor; font-size: 1.5rem; }
+            .ErrorIcon { color: $ErrorColor; font-size: 1.5rem; }
         }
 
         .Message-body

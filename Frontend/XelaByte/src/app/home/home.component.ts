@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit, AfterViewInit
     //SI NO HAY DATOS, SIGNIFICA QUE HUBO UN ERROR POR LO QUE SE LE MOSTRARÁ AL USUARIO GRÁFICAMENTE SOBRE EL ERROR
     if(FormInfo === undefined)
     {
-      this.MessageService.SendMessage("Error al enviar el formulario", "Debe ingresar o corregir todos los campos del formulario antes de enviarlo. Verifique los espacios marcados en color rojo", 6000);
+      this.MessageService.SendMessage("Error al enviar el formulario", "Debe ingresar o corregir todos los campos del formulario antes de enviarlo. Verifique los espacios marcados en color rojo", 6000, { MessageType: 1 });
       for(let [input, small] of FormInputsText!)
       {
         input.classList.replace("ng-pristine", "ng-dirty");
@@ -85,12 +85,12 @@ export class HomeComponent implements OnInit, AfterViewInit
     }
     else
     {
-      this.MessageService.SendMessage("Enviando formulario...", "El formulario se está enviando, por favor espere", 4000);
+      this.MessageService.SendMessage("Enviando formulario...", "El formulario se está enviando, por favor espere", 4000, { MessageType: 0 });
       //RELIZAR EL MÉTODO POST DE LA INFORMACIÓN DEL FORMULARIO
       setTimeout(() => {
         switch(FormInfo?.FormFrom)
         {
-          case "ContactForm": this.MessageService.SendMessage("Los datos se enviaron correctamente", "Su mensaje para contactarnos de envió correctamente, espere una respuesta en los proximos días en la dirección de correco electrónico ingresado", 6000, {AcceptButton: ()=>{}}); break;
+          case "ContactForm": this.MessageService.SendMessage("Los datos se enviaron correctamente", "Su mensaje para contactarnos de envió correctamente, espere una respuesta en los proximos días en la dirección de correco electrónico ingresado", undefined, {AcceptButton: ()=>{}}); break;
         }
       }, 2000);
       console.log(FormInfo);
@@ -154,8 +154,8 @@ export class HomeComponent implements OnInit, AfterViewInit
             item.Form.classList.toggle("Show"); item.Form.children[0].children[0].classList.toggle("Show-content");
           }, 2)
         };
-        /*----------------*/
       }
+      /*----------------*/
       
       /*CERRANDO EL FORM*/
       let isMobile = this.IsMobile();

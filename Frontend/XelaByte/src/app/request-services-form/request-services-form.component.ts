@@ -94,7 +94,7 @@ export class RequestServicesFormComponent implements OnInit, AfterContentInit
     //EN CASO DE QUE TODOS LOS SERVICIOS ESTÉN SIN CHEQUEAR
     if(AllUnChecked) 
     { 
-      this.MessageService.SendMessage("Solicitud erronea", "Debe seleccionar al menos una casilla en el apartado de servicios para poder hacer la solicitud. ¿Desea solicitar un serivicio fuera de la lista?", undefined, { YesButton: ()=>{ OtherServiceOption.click(); }, NoButton: ()=>{} });
+      this.MessageService.SendMessage("Solicitud erronea", "Debe seleccionar al menos una casilla en el apartado de servicios para poder hacer la solicitud. ¿Desea solicitar un serivicio fuera de la lista?", undefined, { YesButton: ()=>{ OtherServiceOption.click(); }, NoButton: ()=>{}, MessageType: 0 });
       formInputsText.push([OtherServiceOption, formElement.getElementsByClassName("input-c")[3].children.item(1) as HTMLElement]);
     }
     for(let [VServiceInput, VServiceName] of ValidatedServices){ this.RequestServicesFormData.Services.push(VServiceName.textContent!); }
