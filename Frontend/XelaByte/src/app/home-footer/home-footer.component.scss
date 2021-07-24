@@ -5,7 +5,7 @@
     background-color: $BodyBlack;
     //background: $CardBlackBackground;
     box-shadow: $CardsShadow;
-    color: white;
+    //color: white;
     padding: 4rem 0rem 0rem 0rem;
     margin-left: 0; margin-right: 0;
     //border-radius: 15px;
@@ -25,6 +25,8 @@
     {
         p { font-size: 0.875rem; }
     }
+    
+    p { color: white; }
 
     a
     {

@@ -20,7 +20,9 @@ export class HomeComponent implements OnInit, AfterViewInit
     [ 
       Array.from(document.getElementsByName("ContactFormButton")),
       Array.from(document.getElementsByName("TalentFormButton")),
-      Array.from(document.getElementsByName("MakeAppointmentFormButton"))
+      Array.from(document.getElementsByName("MakeAppointmentFormButton")),
+      Array.from(document.getElementsByName("TermsNConditionsFormButton")),
+      Array.from(document.getElementsByName("PrivacyPoliciesFormButton"))
     ];
 
     let FormCloseButtons = Array.from(document.getElementsByName("FormCloseButton"));

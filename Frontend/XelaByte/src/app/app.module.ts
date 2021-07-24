@@ -19,6 +19,8 @@ import { MakeAppointmentFormComponent } from './make-appointment-form/make-appoi
 import { HomeFooterComponent } from './home-footer/home-footer.component';
 import { MessagesContainerComponent } from './messages-container/messages-container.component';
 import { MessageComponent } from './messages-container/message.component';
+import { TermsNConditionsComponent } from './terms-nconditions/terms-nconditions.component';
+import { PrivacyPoliciesComponent } from './privacy-policies/privacy-policies.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { MessageComponent } from './messages-container/message.component';
     MakeAppointmentFormComponent,
     HomeFooterComponent,
     MessagesContainerComponent,
-    MessageComponent
+    MessageComponent,
+    TermsNConditionsComponent,
+    PrivacyPoliciesComponent
   ],
   imports: [
     CommonModule,
