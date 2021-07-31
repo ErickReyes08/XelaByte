@@ -117,8 +117,8 @@ export class RequestServicesFormComponent implements OnInit, AfterContentInit
 
   ResetFormValues(form: NgForm)
   {
-    let contactForm = document.getElementById("ServiceForm");
-    let closeButton = contactForm!.getElementsByClassName("Modal-exit")[0] as HTMLElement;
+    let localForm = document.getElementById("ServicesForm");
+    let closeButton = localForm!.getElementsByClassName("Modal-exit")[0] as HTMLElement;
     closeButton.click();
     setTimeout(() => { form.resetForm(); }, 152);
   }

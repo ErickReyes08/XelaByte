@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DashBoardModule } from './dash-board/dash-board.module';
 //DIRECTIVAS
 import { DragNDropDirective } from './drag-ndrop.directive';
 //COMPONENTES
@@ -44,7 +45,8 @@ import { PrivacyPoliciesComponent } from './privacy-policies/privacy-policies.co
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    DashBoardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

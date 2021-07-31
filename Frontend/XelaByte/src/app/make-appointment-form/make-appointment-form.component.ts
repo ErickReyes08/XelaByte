@@ -98,8 +98,8 @@ export class MakeAppointmentFormComponent implements OnInit
 
   ResetFormValues(form: NgForm)
   {
-    let contactForm = document.getElementById("MakeAppointmentForm");
-    let closeButton = contactForm!.getElementsByClassName("Modal-exit")[0] as HTMLElement;
+    let localForm = document.getElementById("MakeAppointmentForm");
+    let closeButton = localForm!.getElementsByClassName("Modal-exit")[0] as HTMLElement;
     closeButton.click();
     setTimeout(() => { form.resetForm(); }, 152);
   }

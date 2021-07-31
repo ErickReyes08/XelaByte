@@ -83,9 +83,9 @@ export class TalentFormComponent implements OnInit
 
   ResetFormValues(form: NgForm)
   {
-    let contactForm = document.getElementById("TalentForm");
-    let closeButton = contactForm!.getElementsByClassName("Modal-exit")[0] as HTMLElement;
+    let localForm = document.getElementById("TalentForm");
+    let closeButton = localForm!.getElementsByClassName("Modal-exit")[0] as HTMLElement;
     closeButton.click();
-    setTimeout(() => { form.resetForm(); contactForm!.getElementsByTagName("select")[0].selectedIndex = 0; }, 152);
+    setTimeout(() => { form.resetForm(); localForm!.getElementsByTagName("select")[0].selectedIndex = 0; }, 152);
   }
 }

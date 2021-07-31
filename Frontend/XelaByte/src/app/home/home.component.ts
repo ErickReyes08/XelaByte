@@ -88,14 +88,15 @@ export class HomeComponent implements OnInit, AfterViewInit
     else
     {
       this.MessageService.SendMessage("Enviando formulario...", "El formulario se está enviando, por favor espere", 4000, { MessageType: 0 });
-      //RELIZAR EL MÉTODO POST DE LA INFORMACIÓN DEL FORMULARIO
+      //REALIZAR EL MÉTODO POST DE LA INFORMACIÓN DEL FORMULARIO
       setTimeout(() => {
         switch(FormInfo?.FormFrom)
         {
           case "ContactForm": this.MessageService.SendMessage("Los datos se enviaron correctamente", "Su mensaje para contactarnos de envió correctamente, espere una respuesta en los proximos días en la dirección de correco electrónico ingresado", undefined, {AcceptButton: ()=>{}}); break;
         }
       }, 2000);
-      console.log(FormInfo);
+
+      console.log(JSON.stringify(FormInfo.Data));
     }
   }
 
@@ -106,7 +107,7 @@ export class HomeComponent implements OnInit, AfterViewInit
     let ServiceFormButtons = Array.from(document.getElementsByName("ServiceFormButton"));
     let ServiceFormCloseButton = document.getElementsByName("ServiceFormCloseButton")[0] as HTMLElement;
     let ServiceForm = document.getElementsByName("ServiceForm")[0] as HTMLElement;
-    console.log(ServiceFormButtons, ServiceFormCloseButton, ServiceForm);
+    //console.log(ServiceFormButtons, ServiceFormCloseButton, ServiceForm);
     //ABRIENDO EL FORMULARIO
     for(let ServiceFormButton of ServiceFormButtons)
     {

@@ -55,18 +55,19 @@ export class ContactFormComponent implements OnInit
     }
     else //SE ENVIAN LOS DATOS AL PADRE PARA QUE SE SUBAN AL BACKEND
     {
-      //SE CIERRA Y RESETEA EL FORMULARIO
-      this.ResetFormValues(form);
+      //console.log(this.ContactFormData);
       //SE ENVÍAN LOS DATOS
       formInfo = { Data: this.ContactFormData, FormFrom: "ContactForm", URL: "contactFormURL-Backend" }
       this.FormDataEmmiter.emit({formInputsText, formButton, formInfo});
+      //SE CIERRA Y RESETEA EL FORMULARIO
+      this.ResetFormValues(form);
     }
   }
 
   ResetFormValues(form: NgForm)
   {
-    let contactForm = document.getElementById("ContactForm");
-    let closeButton = contactForm!.getElementsByClassName("Modal-exit")[0] as HTMLElement;
+    let localForm = document.getElementById("ContactForm");
+    let closeButton = localForm!.getElementsByClassName("Modal-exit")[0] as HTMLElement;
     closeButton.click();
     setTimeout(() => { form.resetForm(); }, 152);
   }
