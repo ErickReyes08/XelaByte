@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'DashBoard',
@@ -8,12 +9,22 @@ import { Component, OnInit } from '@angular/core';
 
 export class DashBoardComponent implements OnInit 
 {
+  WorkingPage: string = "Inicio";
 
-  constructor() { }
+  constructor(router: Router) 
+  {
+    router.events.forEach((e) => 
+    {
+      if(e instanceof NavigationStart) { console.log("Navigation start") }
+      if(e instanceof NavigationEnd) { console.log("Navigation end") }
+    });
+  }
 
   ngOnInit(): void 
   {
-    
+    setTimeout(() => {
+      this.WorkingPage = "Información de la empresa";
+    }, 2000);
   }
 
 }

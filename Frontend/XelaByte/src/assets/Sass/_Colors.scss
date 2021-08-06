@@ -9,6 +9,7 @@ $ButtonsBlackGradient: linear-gradient(350deg, #4e4e4e 0%, #3f3f3f 14%, #2a2a2a 
 $FontColor: #7c7c7c;
 $FormGray: #F2F2F2;
 $FormBorder: #E4E4E4;
+$LightGray: #F2F2F2;
 $Gray: #e2e2e2;
 $DarkGray: #d4d4d4;
 $DarkGray_1: #727272;
@@ -21,8 +22,15 @@ $HoverButtonBG: #181818;
 $HoverLightBlack: #383838;
 $ErrorColor: #963838;
 $WarningColor: #ff8e00fb;
-
+$LightBlue: #d7f8ff;
+$LightBlue-hover: #d7f8ffee;
 /*SOMBRAS E ILUMINACIONES*/
+$Shadow1: 0px 9px 36px -5px rgb(0 0 0 / 10%);
+//box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+//box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+$Shadow2: 0 5px 10px rgba(0, 0, 0, 0.2);
+$Shadow3: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+$Shadow4: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 $NavShadow: 0px 5px 25px 2px rgba(0,0,0,0.075);
 $CardsShadow: 0px 0px 38px -2px rgba(0,0,0,0.2);
 $BlackBGShadow: 0px 0px 16px 2px rgba(0,0,0,0.35);

@@ -1,6 +1,8 @@
 @import "../assets/Sass/Colors";
 @import "../assets/Sass/Modal";
 
+button { color: unset; background-color: transparent; border: none; }
+
 .w-inherit { width: inherit; }
 
 .ListStyle-none { list-style: none; padding: 0; }
