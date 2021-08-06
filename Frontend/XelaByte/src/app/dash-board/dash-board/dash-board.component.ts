@@ -13,11 +13,11 @@ export class DashBoardComponent implements OnInit
 
   constructor(router: Router) 
   {
-    router.events.forEach((e) => 
+    /*router.events.forEach((e) => 
     {
       if(e instanceof NavigationStart) { console.log("Navigation start") }
       if(e instanceof NavigationEnd) { console.log("Navigation end") }
-    });
+    });*/
   }
 
   ngOnInit(): void 
