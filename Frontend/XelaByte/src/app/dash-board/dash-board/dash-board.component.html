@@ -1,0 +1,23 @@
+<div class="Dashboard">
+    <Sidebar></Sidebar>
+    <div class="content">
+
+        <nav class="navbar navbar-nav navbar-expand-lg pb-3">
+            <div [ngSwitch]="WorkingPage" class="container-fluid justify-content-center px-5">
+                <p *ngSwitchCase="'Inicio'" class="Montserrat-Bold py-2 my-0">Dashboard<i class="bi bi-ui-checks-grid"></i></p>
+                <p *ngSwitchCase="'Usuarios'" class="Montserrat-Bold py-2 my-0">Administradores<i class="bi bi-ui-checks-grid"></i></p>
+                <p *ngSwitchCase="'Servicios'" class="Montserrat-Bold py-2 my-0">Servicios<i class="bi bi-ui-checks-grid"></i></p>
+                <p *ngSwitchCase="'Empleos'" class="Montserrat-Bold py-2 my-0">Empleos<i class="bi bi-ui-checks-grid"></i></p>
+                <p *ngSwitchCase="'Citas'" class="Montserrat-Bold py-2 my-0">Citas<i class="bi bi-ui-checks-grid"></i></p>
+                <p *ngSwitchCase="'Información de la empresa'" class="Montserrat-Bold py-2 my-0">Información de la empresa<i class="bi bi-ui-checks-grid"></i></p>
+            </div>
+        </nav>
+
+        <div class="body">
+            <router-outlet></router-outlet>
+            <div class="fade-out"></div>
+        </div>
+
+    </div>
+</div>
+

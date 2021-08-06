@@ -22,6 +22,7 @@ import { MessagesContainerComponent } from './messages-container/messages-contai
 import { MessageComponent } from './messages-container/message.component';
 import { TermsNConditionsComponent } from './terms-nconditions/terms-nconditions.component';
 import { PrivacyPoliciesComponent } from './privacy-policies/privacy-policies.component';
+import { LoadingPageComponent } from './loading-page/loading-page.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { PrivacyPoliciesComponent } from './privacy-policies/privacy-policies.co
     MessagesContainerComponent,
     MessageComponent,
     TermsNConditionsComponent,
-    PrivacyPoliciesComponent
+    PrivacyPoliciesComponent,
+    LoadingPageComponent
   ],
   imports: [
     CommonModule,

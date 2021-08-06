@@ -1,11 +1,19 @@
-$MontserratPaths: 
+/*$MontserratPaths: 
 url("../Fonts/MontserratAlternates-Bold.woff"),
 url("../Fonts/MontserratAlternates-ExtraBold.woff"),  
 url("../Fonts/MontserratAlternates-Light.woff"),
 url("../Fonts/MontserratAlternates-Medium.woff"),
 url("../Fonts/MontserratAlternates-Regular.woff"),
 url("../Fonts/MontserratAlternates-SemiBold.woff"),
-url("../Fonts/MontserratAlternates-Thin.woff");
+url("../Fonts/MontserratAlternates-Thin.woff");*/
+$MontserratPaths: 
+url("../Fonts/Montserrat-Bold.woff"),
+url("../Fonts/Montserrat-ExtraBold.woff"),  
+url("../Fonts/Montserrat-Light.woff"),
+url("../Fonts/Montserrat-Medium.woff"),
+url("../Fonts/Montserrat-Regular.woff"),
+url("../Fonts/Montserrat-SemiBold.woff"),
+url("../Fonts/Montserrat-Thin.woff");
 $MontserratNames: "Bold", "ExtraBold", "Light", "Medium", "Regular", "SemiBold", "Thin";
 
 @each $MontserratPath in $MontserratPaths

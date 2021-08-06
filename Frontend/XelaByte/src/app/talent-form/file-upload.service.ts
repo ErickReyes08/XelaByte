@@ -42,7 +42,7 @@ export class FileUploadService implements OnInit
     window.onfocus = () =>
     {
       console.log("ON WINDOWS FOCUS");
-      if(inputFile.files?.length){ /*console.log("ENTER IF");*/ this.InputLocked = true; } 
+      if(inputFile.files!.length){ /*console.log("ENTER IF");*/ this.InputLocked = true; } 
       else { /*console.log("ENTER ELSE");*/ this.InputLocked = false; }
       window.onfocus = null;
     }
@@ -81,7 +81,7 @@ export class FileUploadService implements OnInit
 
         this.InputLocked = false;
       }
-      (<HTMLInputElement>document.getElementById("inputFile")).value = '';
+      (<HTMLInputElement>document.getElementById("inputFile")).value = "";
       //console.log("Archivo: " + fileList.item(0)?.name);
     }
   }
