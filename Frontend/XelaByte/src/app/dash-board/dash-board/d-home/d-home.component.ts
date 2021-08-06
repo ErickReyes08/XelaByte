@@ -5,11 +5,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './d-home.component.html',
   styleUrls: ['./d-home.component.scss']
 })
-export class DHomeComponent implements OnInit {
+
+export class DHomeComponent implements OnInit 
+{
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
   }
 
 }

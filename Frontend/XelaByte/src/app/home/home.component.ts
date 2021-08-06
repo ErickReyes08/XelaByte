@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit, AfterViewInit
     this.activatedRoute.data.subscribe( response => {
       //ESTABLECIENDO LOS DATOS UNA VEZ CARGADO CORRECTAMENTE EL RESOLVER
       let HomeVideoURL = "https://www.youtube.com/embed/JIZLzhUFLvY";
-      //--------CÓDIGO FINAL CUANDO SE RECIBNA LOS DATOS DEL BACKEND------------this.HomeResolver.HomeVideoLink = this.sanitizer.bypassSecurityTrustResourceUrl(response.HomeData.get("HomeVideoLink"));
+      //--------CÓDIGO FINAL CUANDO SE RECIBAN LOS DATOS DEL BACKEND------------this.HomeResolver.HomeVideoLink = this.sanitizer.bypassSecurityTrustResourceUrl(response.HomeData.get("HomeVideoLink"));
       this.HomeResolver.HomeVideoLink = this.sanitizer.bypassSecurityTrustResourceUrl(HomeVideoURL);
       console.log(response.HomeData);
     });
