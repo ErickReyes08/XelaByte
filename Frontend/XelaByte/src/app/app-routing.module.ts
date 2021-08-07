@@ -8,7 +8,7 @@ import { DHomeComponent } from './dash-board/dash-board/d-home/d-home.component'
 const routes: Routes = 
 [
   { path: "", component: HomeComponent, resolve: { HomeData: HomeResolverService } },
-  { path: "Home", component: HomeComponent, resolve: { HomeData: HomeResolverService } },
+  { path: "home", component: HomeComponent, resolve: { HomeData: HomeResolverService } },
   { 
     path: "Dashboard", component: DashBoardComponent, 
     children: 
@@ -16,8 +16,8 @@ const routes: Routes =
       { path: "", component: DHomeComponent },
       { path: "home", component: DHomeComponent }
     ]
-  },
-  
+  }
+
 ];
 
 @NgModule({

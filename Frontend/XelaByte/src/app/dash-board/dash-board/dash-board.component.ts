@@ -11,7 +11,7 @@ export class DashBoardComponent implements OnInit
 {
   WorkingPage: string = "Inicio";
 
-  constructor(router: Router) 
+  constructor(private router: Router) 
   {
     /*router.events.forEach((e) => 
     {
