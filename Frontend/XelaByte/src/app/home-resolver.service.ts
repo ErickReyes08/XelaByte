@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { forkJoin, Observable } from 'rxjs';
+import { forkJoin, Observable, Subscription } from 'rxjs';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { SafeResourceUrl } from '@angular/platform-browser';
 
@@ -202,6 +202,15 @@ export class HomeResolverService implements Resolve<any>
         sub.complete();
       }, 315);
     });
+    
+    /*let x: Subscription = new Subscription();
+    console.log(x!.closed)
+    x = HomeVideoLink.subscribe(data => console.log(x.closed));
+    setTimeout(() => {
+      x.unsubscribe();
+      console.log(x.closed);  
+    }, 400);*/
+    
     //#endregion
     /*-----------------------------------------------*/
     
